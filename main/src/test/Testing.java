@@ -7,9 +7,10 @@ import java.io.IOException;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
-        String path = "main/resources/test.fasta";
-        File file = new File(path);
-        System.out.println(FastaParser.parseFasta(file));
+        int[]x = new int[8];
+        for (int s : x){
+            System.out.println(s);
+        }
     }
 
 
