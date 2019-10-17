@@ -13,6 +13,16 @@ public class FastaParser {
         }
         return null;
     }
+    public static String getBigExample (){
+        String path = "main/resources/sequence.fasta";
+        File file = new File(path);
+        try {
+            return parseFasta(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public static String parseFasta(File inputFile) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(inputFile));
         String st;
