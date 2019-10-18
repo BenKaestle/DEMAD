@@ -3,7 +3,7 @@ package utility;
 import java.io.*;
 
 public class FastaParser {
-    public static String getExample (){
+    public static String[] getExample (){
         String path = "main/resources/test.fasta";
         File file = new File(path);
         try {
@@ -13,7 +13,7 @@ public class FastaParser {
         }
         return null;
     }
-    public static String getBigExample (){
+    public static String[] getBigExample (){
         String path = "main/resources/sequence.fasta";
         File file = new File(path);
         try {
@@ -23,15 +23,18 @@ public class FastaParser {
         }
         return null;
     }
-    public static String parseFasta(File inputFile) throws IOException {
+    public static String[] parseFasta(File inputFile) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(inputFile));
         String st;
-        String fasta="";
+        String header = "";
+        StringBuilder fasta=new StringBuilder();
         while ((st = br.readLine()) != null) {
             if (!st.startsWith(">"))
-                fasta += st.trim();
+                fasta.append(st.trim());
+            else
+                header = st;
         }
-        return fasta;
+        return new String[]{header, fasta.toString()};
     }
 }
 

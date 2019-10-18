@@ -4,7 +4,11 @@ import hash_functions.Murmur3;
 import hash_functions.Rabin_Karp;
 import hash_functions.Test_Hash;
 import utility.FastaParser;
+import utility.Sketch;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.*;
 
@@ -61,24 +65,26 @@ class MergeTask implements Callable<long[]>
         return combine(combined);
     }
 }
-class KmerTask implements Callable<long[]>
+final class KmerTask implements Callable<ArrayList<Sketch>>
 {
     private String name;
     private CountDownLatch latch;
     private int sketchSize;
     private int kmerSize;
-    private String sequence;
     private long hashModulo;
     private String hashType;
+    private ArrayList<String> listOfSequences;
+    private Sketch sketch;
+    private ArrayList<Sketch> sketches;
 
-    public KmerTask(String name, CountDownLatch latch, int sketchSize, int kmerSize, String sequence, long hashModulo, String hashType) {
+    public KmerTask(String name, CountDownLatch latch, int sketchSize, int kmerSize, long hashModulo, String hashType, ArrayList<String> listOfSequences) {
         this.name = name;
         this.latch = latch;
         this.sketchSize = sketchSize;
         this.kmerSize = kmerSize;
-        this.sequence = sequence;
         this.hashModulo = hashModulo;
         this.hashType = hashType;
+        this.listOfSequences = listOfSequences;
     }
 
     public String getName() {
@@ -108,49 +114,65 @@ class KmerTask implements Callable<long[]>
     }
 
     @Override
-    public long[] call() {
-        int count = 0;
-        long[] sketch = new long[sketchSize];
-        Arrays.fill(sketch, Integer.MAX_VALUE);
-        for (int i = 0; i <= sequence.length() - kmerSize; i++) {
+    public synchronized ArrayList<Sketch> call() {
+        sketches = new ArrayList<>();
+        while (!listOfSequences.isEmpty()) {
+            String path = listOfSequences.remove(0);
 
-            long hash=0;
-            switch (hashType){
-                case "Test":
-                    Test_Hash test_hash = new Test_Hash();
-                    hash = test_hash.hash(canonical_kmer(sequence.substring(i, i + kmerSize)),hashModulo);
-                    break;
-                case "Rabin_Karp":
-                    Rabin_Karp rabin_karp = new Rabin_Karp(11,5);
-                    hash = rabin_karp.hash(canonical_kmer(sequence.substring(i, i + kmerSize)),hashModulo);
-                    break;
-                case "Murmur3":
-                    Murmur3 murmur3 = new Murmur3();
-                    hash = murmur3.hash(canonical_kmer(sequence.substring(i, i + kmerSize)),hashModulo);
-                    break;
+            String[] sequenceInfo = new String[2];
+            try {
+                sequenceInfo = FastaParser.parseFasta(new File(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int count = 0;
+            String sequence = sequenceInfo[1];
+            long[] sketchHashes = new long[sketchSize];
+            sketch = new Sketch(sketchHashes, sequenceInfo[0]);
+            Arrays.fill(sketchHashes, Integer.MAX_VALUE);
+            long hash = 0;
+            for (int i = 0; i <= sequence.length() - kmerSize; i++) {
 
-
-            };
-            count++;
-            if (hash < sketch[0]) {
-                boolean found = false;
-                for (int j = 1; j < sketchSize; j++) {
-                    if (hash < sketch[j]) {
-                        sketch[j - 1] = sketch[j];
-                    } else {
-                        sketch[j - 1] = hash;
-                        found = true;
+                switch (hashType) {
+                    case "Test":
+                        Test_Hash test_hash = new Test_Hash();
+                        hash = test_hash.hash(canonical_kmer(sequence.substring(i, i + kmerSize)), hashModulo);
                         break;
+                    case "Rabin_Karp":
+                        if (hash == 0)
+                            hash = Rabin_Karp.hash(canonical_kmer(sequence.substring(i, i + kmerSize)), hashModulo, 11, 5);
+                        else
+                            hash = Rabin_Karp.hashNext(sequence.charAt(i - 1), sequence.charAt(i + kmerSize), hash, hashModulo, 11, 5, kmerSize);
+                        break;
+                    case "Murmur3":
+                        hash = Murmur3.murmurhash3_x86_32(canonical_kmer(sequence.substring(i, i + kmerSize)), 0, kmerSize, 1);
+                        break;
+
+
+                }
+                ;
+                count++;
+                if (hash < sketchHashes[0]) {
+                    boolean found = false;
+                    for (int j = 1; j < sketchSize; j++) {
+                        if (hash < sketchHashes[j]) {
+                            sketchHashes[j - 1] = sketchHashes[j];
+                        } else {
+                            sketchHashes[j - 1] = hash;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        sketchHashes[sketchSize - 1] = hash;
                     }
                 }
-                if (!found) {
-                    sketch[sketchSize - 1] = hash;
-                }
             }
+            System.out.println("kmers hashed: " + count + " by thread " + this.name);
+            latch.countDown();
+            sketches.add(sketch);
         }
-        System.out.println("kmers hashed: " + count);
-        latch.countDown();
-        return sketch;
+        return sketches;
 //            Long duration = (long) (Math.random() * 50);
 //            System.out.println("Doing a task during : " + name);
 //            TimeUnit.SECONDS.sleep(duration);
@@ -169,20 +191,20 @@ public class Mash {
 //        System.out.println(rabin_karp.hash("GGGGGGGGGGGGGGGGGGGGG", (long) Math.pow(2,32)));
 //        System.out.println( (long) Math.pow(2,64));
 
-        String[] x = new String[]{FastaParser.getBigExample()};
-        System.out.println("eingelesen");
-        mash_sketch(x,1000,21,4, (long)Math.pow(2,32), "Rabin_Karp");
-    }
-    public static int[] mash_sketch(String[] sequences, int sketchSize, int kmerSize, int cores, long hashModulo, String hashType){
-        String[][] split = new String[sequences.length][cores];
-        int i=0;
-        for (String sequence : sequences){
-            split[i] = splitBy(cores, sequence, kmerSize);
-            i++;
-        }
-        System.out.println("splitted");
+        ArrayList<String> x = new ArrayList<>();
+        for (int i =0;i<20;i++)
+            x.add("main/resources/sequence.fasta");
+        long startTime = System.currentTimeMillis();
+        mash_sketch(x,1000,21,4, (long)Math.pow(2,32), "Murmur3");
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        System.out.println(duration);
 
-        runInParallel(cores,sketchSize,kmerSize,split, hashModulo, hashType);
+    }
+    public static Sketch[] mash_sketch(ArrayList<String> sequences, int sketchSize, int kmerSize, int cores, long hashModulo, String hashType){
+
+
+        runInParallel(cores,sketchSize,kmerSize,sequences,hashModulo,hashType);
 
 
         return null;
@@ -206,65 +228,88 @@ public class Mash {
         return split;
     }
 
-    public static void runInParallel(int cores, int sketchSize, int kmerSize, String[][] sequences, long hashModulo, String hashType){
-        int threads=sequences.length*cores;
+    public static void runInParallel(int cores, int sketchSize, int kmerSize, ArrayList<String> sequences, long hashModulo, String hashType){
+        int threads=sequences.size();
         ExecutorService pool = Executors.newFixedThreadPool(cores);
         CountDownLatch latch = new CountDownLatch(threads);
-        Future<long[]>[][] results = new Future[sequences.length][cores];
-        for (int i = 0; i < threads; i++)
+        Future<ArrayList<Sketch>>[] results = new Future[cores];
+        for (int i = 0; i < cores; i++)
         {
-            KmerTask task = new KmerTask("Task " + i, latch,sketchSize, kmerSize, sequences[i/cores][i%cores], hashModulo, hashType);
+            KmerTask task = new KmerTask("Task " + i, latch,sketchSize, kmerSize, hashModulo, hashType, sequences);
             System.out.println("A new task has been added : " + task.getName());
-            results[i/cores][i%cores] = pool.submit(task);
+            results[i] = pool.submit(task);
         }
         try {
             latch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        long[][] combined = new long[cores][sketchSize];
-        Future<long[]>[] sketches = new Future[sequences.length];
-        threads = sequences.length;
-        latch = new CountDownLatch(threads);
-        int seq_num=0;
-        for (Future<long[]>[] x : results){
-            int task_num=0;
-            for (Future<long[]> xx : x) {
-                try {
-                    combined[task_num] = xx.get();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-                task_num++;
-            }
-            MergeTask task = new MergeTask("Task " + seq_num,combined, latch);
-            System.out.println("A new task has been added : " + task.getName());
-            sketches[seq_num] = pool.submit(task);
-            seq_num++;
-        }
-
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         pool.shutdown();
-        for (Future<long[]> x :sketches){
-            long[] y=null;
+        Sketch[] sketches = new Sketch[threads];
+        int pointer = 0;
+        for(Future<ArrayList<Sketch>> sketch : results){
             try {
-                y = x.get();
+                for(Sketch s : sketch.get()){
+                    sketches[pointer] = s;
+                    pointer++;
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            for (long z : y){
-                System.out.println(z);
+        }
+
+
+
+        for (Sketch s : sketches){
+            for (long l : s.getHashes()){
+                System.out.println(l);
             }
         }
+//        long[][] combined = new long[cores][sketchSize];
+//        Future<long[]>[] sketches = new Future[sequences.length];
+//        threads = sequences.length;
+//        latch = new CountDownLatch(threads);
+//        int seq_num=0;
+//        for (Future<long[]>[] x : results){
+//            int task_num=0;
+//            for (Future<long[]> xx : x) {
+//                try {
+//                    combined[task_num] = xx.get();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                } catch (ExecutionException e) {
+//                    e.printStackTrace();
+//                }
+//                task_num++;
+//            }
+//            MergeTask task = new MergeTask("Task " + seq_num,combined, latch);
+//            System.out.println("A new task has been added : " + task.getName());
+//            sketches[seq_num] = pool.submit(task);
+//            seq_num++;
+//        }
+//
+//        try {
+//            latch.await();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+//        pool.shutdown();
+//        for (Future<long[]> x :sketches){
+//            long[] y=null;
+//            try {
+//                y = x.get();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            }
+//            for (long z : y){
+//                System.out.println(z);
+//            }
+//        }
     }
 
 

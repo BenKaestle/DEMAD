@@ -4,13 +4,18 @@ import utility.FastaParser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
-        int[]x = new int[8];
-        for (int s : x){
-            System.out.println(s);
-        }
+        
+        ArrayList<String> x = new ArrayList<>();
+        x.add("b");
+        x.add("c");
+        x.add("a");
+        System.out.println(x.remove(0));
+        System.out.println(x.remove(0));
+        System.out.println(x.remove(0));
     }
 
 
