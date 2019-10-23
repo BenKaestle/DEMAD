@@ -44,6 +44,17 @@ public class BloomFilter {
         this.noHashes = noHashes;
         this.hashMask = (1 << log2noBits) - 1;
     }
+//
+//    public void resetFilter(int log2noBits, int noHashes) {
+//        if (log2noBits < 1 || log2noBits > 31)
+//            throw new IllegalArgumentException("Invalid number of bits");
+//        if (noHashes < 1 || noHashes > MAX_HASHES)
+//            throw new IllegalArgumentException("Invalid number of hashes");
+//
+//        this.data = new BitSet(1 << log2noBits);
+//        this.noHashes = noHashes;
+//        this.hashMask = (1 << log2noBits) - 1;
+//    }
 
     public BloomFilter(int noItems, int bitsPerItem, int noHashes) {
         int bitsRequired = noItems * bitsPerItem;
