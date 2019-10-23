@@ -4,10 +4,10 @@ public class Distance {
     private String header_1;
     private String header_2;
     private float jaccard_index;
-    private float p_value;
+    private double p_value;
     private float mash_distance;
 
-    public Distance(String header_1, String header_2, float jaccard_index, float p_value, float mash_distance) {
+    public Distance(String header_1, String header_2, float jaccard_index, double p_value, float mash_distance) {
         this.header_1 = header_1;
         this.header_2 = header_2;
         this.jaccard_index = jaccard_index;
@@ -27,7 +27,7 @@ public class Distance {
         return jaccard_index;
     }
 
-    public float getP_value() {
+    public double getP_value() {
         return p_value;
     }
 

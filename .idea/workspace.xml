@@ -11,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Mash.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Mash.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/mash/Mash.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="282" column="13" selection-start-line="282" selection-start-column="13" selection-end-line="282" selection-end-column="13" />
+            <state relative-caret-position="42">
+              <caret line="231" column="34" selection-start-line="231" selection-start-column="26" selection-end-line="231" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2295#2296#0" expanded="true" />
@@ -57,6 +57,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Murmur3.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/src/hash_functions/Murmur3.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="97" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="97" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="sequence2.fasta" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/resources/sequence2.fasta">
           <provider selected="true" editor-type-id="text-editor">
@@ -69,8 +78,8 @@
       <file leaf-file-name="Distance.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/utility/Distance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="55" selection-start-line="38" selection-start-column="55" selection-end-line="38" selection-end-column="55" />
+            <state relative-caret-position="238">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding>
                 <element signature="e#522#523#0" expanded="true" />
                 <element signature="e#553#554#0" expanded="true" />
@@ -153,11 +162,11 @@
         <option value="$PROJECT_DIR$/main/src/hash_functions/Murmur3.java" />
         <option value="$PROJECT_DIR$/main/src/hash_functions/Rabin_Karp.java" />
         <option value="$PROJECT_DIR$/main/src/utility/FastaParser.java" />
-        <option value="$PROJECT_DIR$/main/src/utility/Distance.java" />
         <option value="$PROJECT_DIR$/main/src/utility/Sketch.java" />
         <option value="$PROJECT_DIR$/main/src/utility/BloomFilter.java" />
         <option value="$PROJECT_DIR$/main/src/test/Testing.java" />
         <option value="$PROJECT_DIR$/main/src/utility/SketchSet.java" />
+        <option value="$PROJECT_DIR$/main/src/utility/Distance.java" />
         <option value="$PROJECT_DIR$/main/src/mash/Mash.java" />
       </list>
     </option>
@@ -488,13 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/hash_functions/Murmur3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="116" column="22" selection-start-line="116" selection-start-column="22" selection-end-line="116" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/src/hash_functions/Rabin_Karp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1105">
@@ -531,10 +533,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/test/Testing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/function/BiFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/resources/sequence.fasta">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/src/utility/Distance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="55" selection-start-line="38" selection-start-column="55" selection-end-line="38" selection-end-column="55" />
+        <state relative-caret-position="238">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
           <folding>
             <element signature="e#522#523#0" expanded="true" />
             <element signature="e#553#554#0" expanded="true" />
@@ -550,30 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/test/Testing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/utility/BloomFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-782">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/function/BiFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/src/utility/SketchSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -586,22 +588,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/resources/sequence.fasta">
+    <entry file="file://$PROJECT_DIR$/main/src/utility/BloomFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+        <state relative-caret-position="-782">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/mash/Mash.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
-          <caret line="282" column="13" selection-start-line="282" selection-start-column="13" selection-end-line="282" selection-end-column="13" />
+        <state relative-caret-position="42">
+          <caret line="231" column="34" selection-start-line="231" selection-start-column="26" selection-end-line="231" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2295#2296#0" expanded="true" />
             <element signature="e#2322#2323#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/hash_functions/Murmur3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="97" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="97" />
         </state>
       </provider>
     </entry>

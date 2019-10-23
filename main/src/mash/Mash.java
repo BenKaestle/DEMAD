@@ -77,7 +77,8 @@ final class DistTask implements Callable<ArrayList<Distance>>
     private int same_hash_counter;
     private ArrayList<Distance> distances;
     private ArrayList<Sketch[]> pairOfSketches;
-    private float jaccard_index, p_value, mash_distance;
+    private float jaccard_index, mash_distance;
+    private double p_value;
     private int kmer_length;
     private CountDownLatch latch;
     private float r, pkx, pky;
@@ -134,7 +135,7 @@ final class DistTask implements Callable<ArrayList<Distance>>
             System.out.println(r);
             for (int i =0; i<same_hash_counter;i++){
                 System.out.println(p_value);
-                p_value -= (float)(binom(sketch_length,i)*Math.pow(r,i)*Math.pow((1-r),(sketch_length-i)));
+                p_value -= (binom(sketch_length,i)*Math.pow(r,i)*Math.pow((1-r),(sketch_length-i)));
             }
             distances.add(new Distance(sketch_1.getHeader(), sketch_2.getHeader(), jaccard_index, p_value, mash_distance));
             latch.countDown();
@@ -224,7 +225,7 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
             sketch = new Sketch(sketchHashes, sequenceInfo[0], sequence.length());
             Arrays.fill(sketchHashes, Integer.MAX_VALUE);
             long hash = 0;
-            bloomFilter = new BloomFilter(16,4);
+            bloomFilter = new BloomFilter(31,8);
             sketchSet = new SketchSet(5);
             for (int i = 0; i <= sequence.length() - kmerSize; i++) {
 
@@ -250,7 +251,7 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
                 count++;
 
                 if (hash < sketchHashes[0]) {
-                    if(sketchSet.contains(hash)) {
+                    if(bloomFilter.contains(kmer)) {
                         boolean found = false;
                         for (int j = 1; j < sketchSize; j++) {
                             if (hash < sketchHashes[j]) {
@@ -266,7 +267,7 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
                         }
                     }
                     else{
-                        sketchSet.add(hash);
+                        bloomFilter.add(kmer);
                     }
                 }
             }
