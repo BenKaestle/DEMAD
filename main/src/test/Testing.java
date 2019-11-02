@@ -2,6 +2,8 @@ package test;
 
 import utility.BloomFilter;
 import utility.FastaParser;
+import utility.Sketch;
+import utility.WriteReadObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +11,14 @@ import java.util.ArrayList;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
-        System.out.println(optimalK(3000000000l,0.01f));
+//        Sketch sketch = new Sketch(new long[3], "header",3);
+//        Sketch ssketch = new Sketch(new long[4], "header2",4);
+//        Sketch[] sketches = new Sketch[]{sketch,ssketch};
+//        WriteReadObject.writeObjectToFile(sketches,"main/resources/test");
+        Sketch[] s = (Sketch[])WriteReadObject.readObjectFromFile("main/resources/test");
+        System.out.println(s[0].getGenome_size());
+        System.out.println(s[1].getGenome_size());
+
     }
     public static int optimalK(long genome_size, float prob){
         return (int) Math.ceil(Math.log(genome_size*(1-prob)/prob)/Math.log(4));
