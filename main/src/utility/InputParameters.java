@@ -21,6 +21,7 @@ public class InputParameters {
     public String outputFile;
     public boolean tableOutput;
     public ArrayList<String> sequenceFiles;
+    public float lowKThreshold;
 
     public void parseInput(String[] args){
         this.type = args[0].trim();
@@ -62,7 +63,10 @@ public class InputParameters {
         Option hashFunction = new Option("h", "hashFunction", true, "which hash-function should be used");
         options.addOption(hashFunction);
 
-        Option seed = new Option("S", "seed", true, "seed used (default = 42)");
+        Option seed = new Option("S", "seed", true, "seed used for hash function (default = 42)");
+        options.addOption(seed);
+
+        Option lowKThreshold = new Option("w", "lowKThreshold", true, " Probability threshold for warning about low k-mer size. (0-1) (default = 0.1)");
         options.addOption(seed);
 
         Option bloomFilterParameters = new Option("bp", "bloomFilterParameters", true, "size (log2(#bits)) and number of hash functions of the Used BloomFilter");
@@ -148,6 +152,12 @@ public class InputParameters {
         if (seed<1){
             System.out.println("WARNING: minimum seed is 1 -> your value got increased to 42 (default)");
             this.seed = 42;
+        }
+
+        this.lowKThreshold = Float.parseFloat(cmd.getOptionValue("lowKThreshold","0.1"));
+        if (lowKThreshold>1 || lowKThreshold<0){
+            System.out.println("WARNING: lowK-threshold has to be a probability (between 0 and 1) -> your value has been set to default(0.1)");
+            this.lowKThreshold=0.1f;
         }
 
         this.outputFile = cmd.getOptionValue("output","test");

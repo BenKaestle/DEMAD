@@ -71,7 +71,11 @@ final class DistTask implements Callable<ArrayList<Distance>>
                 }
             }
             jaccard_index = (float) same_hash_counter/sketch_length; //todo jaccard estimate = jaccard index???
-            mash_distance = -1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
+//            if (jaccard_index==0f)
+//                mash_distance=1;
+//            else
+//                mash_distance = -1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
+            mash_distance = (jaccard_index==0f)? 1:-1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
             genome_size_1 = sketch_1.getGenome_size();
             genome_size_2 = sketch_2.getGenome_size();
             pkx = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_1);
@@ -143,6 +147,16 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
         return kmer.compareTo(reverse) > 0 ? reverse : kmer;
     }
 
+    /**
+     * for a given genome size and the desired probability prob of observing a random k-mer calculate the optimal k value
+     * @param genome_size
+     * @param prob - probability of observing a random k-mer
+     * @return
+     */
+    public static int optimalK(long genome_size, float prob){
+        return (int) Math.ceil(Math.log(genome_size*(1-prob)/prob)/Math.log(4));
+    }
+
     @Override
     public ArrayList<Sketch> call() throws Exception {
         sketches = new ArrayList<>();
@@ -159,6 +173,11 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
             }
             int count = 0;
             String sequence = sequenceInfo[1];
+            if (optimalK(sequence.length(),parameters.lowKThreshold)>parameters.kmerSize){
+                System.out.println("WARNING: For the k-mer size used ("+parameters.kmerSize+"), the random match probability is above the specified warning threshold ("+parameters.lowKThreshold+
+                        ") for the sequence \""+path+"\" of size "+sequence.length()+". Distances to this sequence may be underestimated as a result. To meet the threshold of "+parameters.lowKThreshold+
+                        ", a k-mer size of at least "+optimalK(sequence.length(),parameters.lowKThreshold)+" is required. See: -k, -w.");
+            }
             Arrays.fill(sketchHashes, Long.MAX_VALUE);
             sketch = new Sketch(sketchHashes, sequenceInfo[0],path, parameters.kmerSize, parameters.hashFunction, sequence.length(), parameters.seed);
             long hash = 0;
@@ -421,15 +440,7 @@ public class Mash {
         return distances;
     }
 
-    /**
-     * for a given genome size and the desired probability prob of observing a random k-mer
-     * @param genome_size
-     * @param prob - probability of observing a random k-mer
-     * @return
-     */
-    public static int optimalK(long genome_size, float prob){
-        return (int) Math.ceil(Math.log(genome_size*(1-prob)/prob)/Math.log(4));
-    }
+
 
 
 
