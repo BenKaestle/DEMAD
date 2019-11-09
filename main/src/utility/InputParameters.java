@@ -22,6 +22,7 @@ public class InputParameters {
     public boolean tableOutput;
     public ArrayList<String> sequenceFiles;
     public float lowKThreshold;
+    public boolean outputPhylip;
 
     public void parseInput(String[] args){
         this.type = args[0].trim();
@@ -66,8 +67,11 @@ public class InputParameters {
         Option seed = new Option("S", "seed", true, "seed used for hash function (default = 42)");
         options.addOption(seed);
 
-        Option lowKThreshold = new Option("w", "lowKThreshold", true, " Probability threshold for warning about low k-mer size. (0-1) (default = 0.1)");
-        options.addOption(seed);
+        Option lowKThreshold = new Option("w", "lowKThreshold", true, " Probability threshold for warning about low k-mer size. (0-1) (default = 0.01)");
+        options.addOption(lowKThreshold);
+
+        Option outputPhylip = new Option("P", "outputPhylip", false, " output the distance Matrix as a *.phylip file");
+        options.addOption(outputPhylip);
 
         Option bloomFilterParameters = new Option("bp", "bloomFilterParameters", true, "size (log2(#bits)) and number of hash functions of the Used BloomFilter");
         bloomFilterParameters.setArgs(2);
@@ -93,6 +97,7 @@ public class InputParameters {
     private void update(CommandLine cmd) {
         this.tableOutput = cmd.hasOption("table");
         this.bloomFilter = cmd.hasOption("bloomFilter");
+        this.outputPhylip = cmd.hasOption("outputPhylip");
         if (cmd.hasOption("hashFunction")){
             hashFunction = Integer.parseInt(cmd.getOptionValue("hashFunction"));
         } else{
@@ -154,10 +159,10 @@ public class InputParameters {
             this.seed = 42;
         }
 
-        this.lowKThreshold = Float.parseFloat(cmd.getOptionValue("lowKThreshold","0.1"));
+        this.lowKThreshold = Float.parseFloat(cmd.getOptionValue("lowKThreshold","0.01"));
         if (lowKThreshold>1 || lowKThreshold<0){
             System.out.println("WARNING: lowK-threshold has to be a probability (between 0 and 1) -> your value has been set to default(0.1)");
-            this.lowKThreshold=0.1f;
+            this.lowKThreshold=0.01f;
         }
 
         this.outputFile = cmd.getOptionValue("output","test");

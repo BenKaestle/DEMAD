@@ -6,6 +6,7 @@ import utility.Sketch;
 import utility.WriteReadObject;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -15,11 +16,39 @@ public class Testing {
 //        Sketch ssketch = new Sketch(new long[4], "header2",4);
 //        Sketch[] sketches = new Sketch[]{sketch,ssketch};
 //        WriteReadObject.writeObjectToFile(sketches,"main/resources/test");
-        Sketch[] s = (Sketch[])WriteReadObject.readObjectFromFile("main/resources/test");
-        System.out.println(s[0].getGenome_size());
-        System.out.println(s[1].getGenome_size());
-
+//        Sketch[] s = (Sketch[])WriteReadObject.readObjectFromFile("main/resources/test");
+//        System.out.println(s[0].getGenome_size());
+//        System.out.println(s[1].getGenome_size());
+        String x="";
+        printTable(WriteReadObject.readTSVtable(x));
+        WriteReadObject.writePhylipFile(WriteReadObject.readTSVtable(x),"original_mash_result");
     }
+
+    //01.fna 02.fna 03.fna 04.fna 05.fna 06.fna 07.fna 08.fna 09.fna 10.fna 11.fna 12.fna 13.fna 14.fna 15.fna 16.fna 17.fna 18.fna 19.fna 20.fna 21.fna 22.fna 23.fna 24.fna 25.fna 26.fna 27.fna 28.fna 29.fna 30.fna 31.fna 32.fna 33.fna 34.fna 35.fna 36.fna 37.fna 38.fna 39.fna 40.fna 41.fna 42.fna 43.fna 44.fna 45.fna 46.fna 47.fna 48.fna 49.fna 50.fna
+
+    private static void printTable(String[][] strings) {
+        for (int i=0;i<strings.length;i++){
+            for (int j=0;j<strings[0].length;j++){
+                System.out.print(strings[i][j]+"\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void usingFileWriter() throws IOException
+    {
+        String fileContent = "4\n" +
+                "LS1         0  0.083  0.25  0.458\n" +
+                "LS2         0.083  0  0.167  0.392\n" +
+                "LS3         0.25  0.167  0  0.392\n" +
+                "LS4         0.458  0.392  0.392  0";
+
+        FileWriter fileWriter = new FileWriter("main/test.phylip");
+        fileWriter.write(fileContent);
+        fileWriter.close();
+    }
+
+
     public static int optimalK(long genome_size, float prob){
         return (int) Math.ceil(Math.log(genome_size*(1-prob)/prob)/Math.log(4));
     }

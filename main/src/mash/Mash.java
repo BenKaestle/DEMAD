@@ -287,7 +287,7 @@ public class Mash {
         parameters.parseInput(args);
         long startTime = System.currentTimeMillis();
         if (parameters.type.equals("sketch")){
-            WriteReadObject.writeObjectToFile(mash_sketch(parameters),parameters.outputFile);
+            WriteReadObject.writeObjectToFile(mash_sketch(parameters),parameters.outputFile.concat(".ske"));
         }
         else if (parameters.type.equals("dist")){
             Distance[] distances = null;
@@ -303,6 +303,9 @@ public class Mash {
                 for (Distance d : distances) {
                     d.print();
                 }
+            }
+            if(parameters.outputPhylip){
+                WriteReadObject.writePhylipFile(tableOutput(distances,parameters.sequenceFiles),parameters.outputFile);
             }
         }
         else if (parameters.type.equals("info")){
