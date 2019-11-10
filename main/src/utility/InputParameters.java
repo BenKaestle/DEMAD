@@ -98,11 +98,6 @@ public class InputParameters {
         this.tableOutput = cmd.hasOption("table");
         this.bloomFilter = cmd.hasOption("bloomFilter");
         this.outputPhylip = cmd.hasOption("outputPhylip");
-        if (cmd.hasOption("hashFunction")){
-            hashFunction = Integer.parseInt(cmd.getOptionValue("hashFunction"));
-        } else{
-            calculateHashFunction();
-        }
         if (this.bloomFilter){
             if (cmd.hasOption("bloomFilterParameters")){
                 this.bloomFilterSize = Integer.parseInt(cmd.getOptionValues("bloomFilterParameters")[0]);
@@ -145,6 +140,12 @@ public class InputParameters {
         if (kmerSize>32){
             System.out.println("WARNING: maximum kmerSize is 32 -> your value got decreased to 21 (default)");
             this.sketchSize = 21;
+        }
+
+        if (cmd.hasOption("hashFunction")){
+            hashFunction = Integer.parseInt(cmd.getOptionValue("hashFunction"));
+        } else{
+            calculateHashFunction();
         }
 
         this.cores = Integer.parseInt(cmd.getOptionValue("parellism","4"));

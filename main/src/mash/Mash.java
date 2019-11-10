@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.concurrent.*;
 import org.apache.commons.cli.*;
 
@@ -300,9 +301,26 @@ public class Mash {
             if (parameters.tableOutput){
                 printTable(tableOutput(distances,parameters.sequenceFiles));
             }else {
-                for (Distance d : distances) {
-                    d.print();
+                Distance[] distances1 = new Distance[distances.length*2+parameters.sequenceFiles.size()];
+                int i=0;
+                for (i=0;i<distances.length;i++) {
+                    distances1[2*i]=distances[i];
+                    distances1[2*i+1]=new Distance(distances[i]);
                 }
+                i*=2;
+                for (String s : parameters.sequenceFiles){
+                    distances1[i] = new Distance(s,s,1,0,0,s,s,parameters.sketchSize);
+                    i++;
+                }
+                Arrays.sort(distances1,Comparator.comparing(a -> a.getFilePath1()));
+                Arrays.sort(distances1,Comparator.comparing(a -> a.getFilePath2()));
+                System.out.println();
+                for (Distance d : distances1) {
+
+                    System.out.print(d.getSameHashes()+", ");
+//                    d.printShort();
+                }
+                System.out.println();
             }
             if(parameters.outputPhylip){
                 WriteReadObject.writePhylipFile(tableOutput(distances,parameters.sequenceFiles),parameters.outputFile);

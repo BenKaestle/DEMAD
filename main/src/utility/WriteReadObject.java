@@ -4,6 +4,33 @@ import java.io.*;
 
 public class WriteReadObject {
 
+    public static int[] readJaccardIndex(String filepath){
+        BufferedReader reader;
+        int[] result = null;
+        try {
+            reader = new BufferedReader(new FileReader(filepath));
+            String line = reader.readLine();
+            int size = 0;
+            while (line != null) {
+                size++;
+                line = reader.readLine();
+            }
+            result = new int[size];
+            reader = new BufferedReader(new FileReader(filepath));
+            line = reader.readLine();
+            int i =0;
+            while (line != null) {
+                result[i] = Integer.parseInt(line.split("\\s+|\t")[line.split("\\s+|\t").length - 1].split("/")[0]);
+                i++;
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static void writePhylipFile(String[][] tableContent, String filepath) {
         FileWriter fileWriter = null;
         String content = String.valueOf(tableContent.length - 1);
@@ -48,7 +75,7 @@ public class WriteReadObject {
         int rows = 0;
         for (String row : table.split("\n")) {
             if (rows == 0) {
-                for (String cell : row.split("\t")) {
+                for (String cell : row.split("\\s+|\t")) {
                     columns++;
                 }
             }
@@ -59,7 +86,7 @@ public class WriteReadObject {
         rows = 0;
         for (String row : table.split("\n")) {
             columns=0;
-            for (String cell : row.split("\t")) {
+            for (String cell : row.split("\\s+|\t")) {
                 result[rows][columns] = cell;
                 columns++;
             }
