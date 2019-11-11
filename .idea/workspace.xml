@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="unnamed" />
+      <artifact name="k-mer_based_distance_algo:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
@@ -19,8 +19,8 @@
       <file leaf-file-name="Mash.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/src/mash/Mash.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="292" column="49" lean-forward="true" selection-start-line="292" selection-start-column="49" selection-end-line="292" selection-end-column="49" />
+            <state relative-caret-position="144">
+              <caret line="321" column="17" lean-forward="true" selection-start-line="321" selection-start-column="17" selection-end-line="321" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,8 +133,8 @@
       <find>40.</find>
       <find>50.</find>
       <find>60.</find>
-      <find>0</find>
-      <find>00</find>
+      <find />
+      <find />
       <find>&gt;</find>
       <find>74</find>
       <find>00</find>
@@ -160,13 +160,13 @@
         <option value="$PROJECT_DIR$/main/src/utility/Distance.java" />
         <option value="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" />
         <option value="$PROJECT_DIR$/main/src/utility/InputParameters.java" />
-        <option value="$PROJECT_DIR$/main/src/mash/Mash.java" />
         <option value="$PROJECT_DIR$/main/src/test/Test_Values.java" />
         <option value="$PROJECT_DIR$/main/src/test/Testing.java" />
+        <option value="$PROJECT_DIR$/main/src/mash/Mash.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
@@ -196,6 +196,27 @@
               <item name="k-mer_based_distance_algo" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="jaccard_index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="k-mer_based_distance_algo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="k-mer_based_distance_algo" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="k-mer_based_distance_algo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="k-mer_based_distance_algo" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="k-mer_based_distance_algo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="k-mer_based_distance_algo" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="k_mer_based_distance_algo_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="k-mer_based_distance_algo" type="b2602c69:ProjectViewProjectNode" />
@@ -295,7 +316,7 @@
     <configuration name="Mash" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mash.Mash" />
       <module name="main" />
-      <option name="PROGRAM_PARAMETERS" value="dist -i main/genomes -k 18 -b" />
+      <option name="PROGRAM_PARAMETERS" value="dist -i main/genomes -b" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -362,8 +383,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Testing" />
         <item itemvalue="Application.Mash" />
+        <item itemvalue="Application.Testing" />
       </list>
     </recent_temporary>
   </component>
@@ -391,12 +412,12 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23870057" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2062147" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27651006" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27651006" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -799,8 +820,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/mash/Mash.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="292" column="49" lean-forward="true" selection-start-line="292" selection-start-column="49" selection-end-line="292" selection-end-column="49" />
+        <state relative-caret-position="144">
+          <caret line="321" column="17" lean-forward="true" selection-start-line="321" selection-start-column="17" selection-end-line="321" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -813,11 +834,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>unnamed</last-edited>
+          <last-edited>k-mer_based_distance_algo:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -825,7 +847,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>

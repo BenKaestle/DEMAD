@@ -317,8 +317,8 @@ public class Mash {
                 System.out.println();
                 for (Distance d : distances1) {
 
-                    System.out.print(d.getSameHashes()+", ");
-//                    d.printShort();
+//                    System.out.print(d.getSameHashes()+", ");
+                    d.printShort();
                 }
                 System.out.println();
             }
