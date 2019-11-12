@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class ParseRefSeq {
 
-    public static ArrayList<CompleteGenome> getAllCompleteGenomes() {
+    public static ArrayList<CompleteGenome> getAllCompleteGenomes(String filepath) {
         BufferedReader reader;
         String[] split;
         ArrayList<CompleteGenome> result = new ArrayList<>();
         try {
-            reader = new BufferedReader(new FileReader("main/res/assembly_summary_refseq.txt"));
+            reader = new BufferedReader(new FileReader(filepath));
             String line = reader.readLine();
             while (line != null) {
                 if (!line.startsWith("#")) {

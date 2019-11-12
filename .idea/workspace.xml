@@ -6,10 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/main/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -204,8 +203,16 @@
       <option name="presentableId" value="Default" />
       <updated>1571146698585</updated>
       <workItem from="1573473422979" duration="6933000" />
-      <workItem from="1573562954266" duration="6721000" />
+      <workItem from="1573562954266" duration="7042000" />
     </task>
+    <task id="LOCAL-00001" summary="more stuff">
+      <created>1573583262933</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573583262933</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +233,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="more stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="more stuff" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/k_mer_based_distance_algo$Mash.ic" NAME="Mash Coverage Results" MODIFIED="1573478451749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

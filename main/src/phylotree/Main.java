@@ -7,8 +7,8 @@ import java.util.Arrays;
 public class Main {
 
     public static void main (String[] args){
-        System.out.println(ParseRefSeq.getAllCompleteGenomes().size());
-        downloadFromYear(Integer.parseInt(args[0]), ParseRefSeq.getAllCompleteGenomes());
+        System.out.println(ParseRefSeq.getAllCompleteGenomes(args[1]).size());
+        downloadFromYear(Integer.parseInt(args[0]), ParseRefSeq.getAllCompleteGenomes(args[1]));
     }
 
     public static void downloadFromYear(int year, ArrayList<CompleteGenome> genomes){
