@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void downloadFromYear(int year, ArrayList<CompleteGenome> genomes){
-        Process p;
+        Process p, q;
         int count=0;
         for (CompleteGenome genome : genomes) {
             if (genome.year == year) {
@@ -27,8 +27,8 @@ public class Main {
                     System.out.println(counter + " / "+ count);
                     p = Runtime.getRuntime().exec("wget "+genome.downloadLink);
                     p.waitFor();
-                    p = Runtime.getRuntime().exec("gunzip "+genome.downloadLink);
-                    p.waitFor();
+                    q = Runtime.getRuntime().exec("gunzip "+genome.downloadLink);
+                    q.waitFor();
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
