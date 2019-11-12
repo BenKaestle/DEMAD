@@ -27,10 +27,41 @@ public class Testing {
 //        WriteReadObject.writePhylipFile(WriteReadObject.readTSVtable(x),"original_mash_result_18_1000");
 //        printTable(compareTables(WriteReadObject.readTSVtable(x), WriteReadObject.readTSVtable(y)));
 
-        for (int i : compareJaccard(WriteReadObject.readJaccardIndex("main/jaccard_index/18_1000_bloom.txt"), Test_Values.output_java_18_1000_bloom)){
-            System.out.print(i + ", ");
+//        for (int i : compareJaccard(WriteReadObject.readJaccardIndex("main/jaccard_index/18_1000_bloom.txt"), Test_Values.output_java_18_1000_bloom)){
+//            System.out.print(i + ", ");
+//        }
+        String sequence = "ABCDEFG";
+        String reverseSequence = "GFEDCBA";
+        int length = sequence.length();
+        for (int i = 0; i <= sequence.length() - 3; i++) {
+            System.out.println(sequence.substring(i, i + 3));
+            System.out.println(reverseSequence.substring(length-i-3, length-i));
         }
 
+    }
+
+    public static String canonical_kmer (String kmer){
+        String reverse = "";
+        for (int i=kmer.length()-1; i>=0;i--){
+            switch (kmer.charAt(i)){
+                case 'A':
+                    reverse+="T";
+                    break;
+                case 'T':
+                    reverse+="A";
+                    break;
+                case 'G':
+                    reverse+="C";
+                    break;
+                case 'C':
+                    reverse+="G";
+                    break;
+                default:
+                    reverse+="N";
+                    break;
+            }
+        }
+        return kmer.compareTo(reverse) > 0 ? reverse : kmer;
     }
 
     //01.fna 02.fna 03.fna 04.fna 05.fna 06.fna 07.fna 08.fna 09.fna 10.fna 11.fna 12.fna 13.fna 14.fna 15.fna 16.fna 17.fna 18.fna 19.fna 20.fna 21.fna 22.fna 23.fna 24.fna 25.fna 26.fna 27.fna 28.fna 29.fna 30.fna 31.fna 32.fna 33.fna 34.fna 35.fna 36.fna 37.fna 38.fna 39.fna 40.fna 41.fna 42.fna 43.fna 44.fna 45.fna 46.fna 47.fna 48.fna 49.fna 50.fna

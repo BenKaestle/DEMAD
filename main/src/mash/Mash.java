@@ -111,7 +111,9 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
     private BloomFilter bloomFilter;
     private SketchSet sketchSet;
     private String kmer;
+    private String reverseKmer;
     private InputParameters parameters;
+    private int sequenceLength;
 
     public KmerTask(String name, CountDownLatch latch, InputParameters parameters) {
         this.name = name;
@@ -125,27 +127,30 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
 
     //todo is it faster to just reverse the whole sequence and take the smaller one?
     public static String canonical_kmer (String kmer){
-        String reverse = "";
+        StringBuilder reverse = new StringBuilder();
         for (int i=kmer.length()-1; i>=0;i--){
             switch (kmer.charAt(i)){
                 case 'A':
-                    reverse+="T";
+                    reverse.append("T");
                     break;
                 case 'T':
-                    reverse+="A";
+                    reverse.append("A");
+
                     break;
                 case 'G':
-                    reverse+="C";
+                    reverse.append("C");
+
                     break;
                 case 'C':
-                    reverse+="G";
+                    reverse.append("G");
+
                     break;
                 default:
-                    reverse+="N";
+                    reverse.append("N");
                     break;
             }
         }
-        return kmer.compareTo(reverse) > 0 ? reverse : kmer;
+        return kmer.compareTo(reverse.toString()) > 0 ? reverse.toString() : kmer;
     }
 
     /**
@@ -174,6 +179,7 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
             }
             int count = 0;
             String sequence = sequenceInfo[1];
+            String reverseSequence = sequenceInfo[2];
             if (optimalK(sequence.length(),parameters.lowKThreshold)>parameters.kmerSize){
                 System.out.println("WARNING: For the k-mer size used ("+parameters.kmerSize+"), the random match probability is above the specified warning threshold ("+parameters.lowKThreshold+
                         ") for the sequence \""+path+"\" of size "+sequence.length()+". Distances to this sequence may be underestimated as a result. To meet the threshold of "+parameters.lowKThreshold+
@@ -184,9 +190,13 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
             long hash = 0;
             bloomFilter = new BloomFilter(parameters.bloomFilterSize,parameters.bloomFilterHashes);
             sketchSet = new SketchSet(5);
+            sequenceLength = sequence.length();
             if (parameters.hashFunction==1) { //murmur3 x64_128
                 for (int i = 0; i <= sequence.length() - parameters.kmerSize; i++) {
-                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
+                    kmer = sequence.substring(i,i+parameters.kmerSize);
+                    reverseKmer = reverseSequence.substring(sequenceLength-i-parameters.kmerSize, sequenceLength-i);
+                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
+//                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
                     try {
                         Murmur3.murmurhash3_x64_128(kmer.getBytes("UTF-8"), 0, parameters.kmerSize, parameters.seed, longPair);
                         hash = longPair.val1;

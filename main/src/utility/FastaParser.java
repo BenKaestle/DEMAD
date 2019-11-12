@@ -28,13 +28,37 @@ public class FastaParser {
         String st;
         String header = "";
         StringBuilder fasta=new StringBuilder();
+        StringBuilder reverse = new StringBuilder();
         while ((st = br.readLine()) != null) {
-            if (!st.startsWith(">"))
+            if (!st.startsWith(">")) {
                 fasta.append(st.trim());
+                for (char c : st.trim().toCharArray()){
+                    switch (c){
+                        case 'A':
+                            reverse.append("T");
+                            break;
+                        case 'T':
+                            reverse.append("A");
+
+                            break;
+                        case 'G':
+                            reverse.append("C");
+
+                            break;
+                        case 'C':
+                            reverse.append("G");
+
+                            break;
+                        default:
+                            reverse.append("N");
+                            break;
+                    }
+                }
+            }
             else
                 header = st;
         }
-        return new String[]{header, fasta.toString()};
+        return new String[]{header, fasta.toString(), reverse.reverse().toString()};
     }
 }
 

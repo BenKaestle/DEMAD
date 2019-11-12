@@ -167,9 +167,6 @@ public class InputParameters {
         }
 
         this.outputFile = cmd.getOptionValue("output","test");
-        if (this.type.equals("sketch")){
-            this.outputFile+=".ske";
-        }
 
 
         sequenceFiles = new ArrayList<>();
