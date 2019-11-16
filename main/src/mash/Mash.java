@@ -281,7 +281,7 @@ final class KmerTask implements Callable<ArrayList<Sketch>>
             else{
                 throw new Exception("no such Hash-Function");
             }
-            System.out.println("kmers hashed: " + count + " by thread " + this.name);
+            System.out.println("kmers hashed: " + count + " by thread " + this.name +"\t"+parameters.sequences.size()+" genomes left");
             latch.countDown();
             sketches.add(sketch);
         }
@@ -325,6 +325,7 @@ public class Mash {
                 Arrays.sort(distances1,Comparator.comparing(a -> a.getFilePath1()));
                 Arrays.sort(distances1,Comparator.comparing(a -> a.getFilePath2()));
                 System.out.println();
+                WriteReadObject.writeTxtFile(distances, parameters.outputFile);
                 for (Distance d : distances1) {
 
 //                    System.out.print(d.getSameHashes()+", ");

@@ -120,4 +120,18 @@ public class WriteReadObject {
         }
         return null;
     }
+
+    public static void writeTxtFile(Distance[] distances, String out) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(out+".txt");
+            for (Distance d : distances){
+                fileWriter.write(d.toString()+"\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

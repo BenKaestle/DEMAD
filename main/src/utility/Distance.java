@@ -74,4 +74,8 @@ public class Distance {
     public void printShort(){
         System.out.println(this.filePath1 + "\t" + this.filePath2 + "\t" + this.mash_distance + "\t" + this.p_value + "\t" + this.sameHashes+"/");
     }
+
+    public String toString(){
+        return this.filePath1 + "\t" + this.filePath2 + "\t" + this.mash_distance + "\t" + this.p_value + "\t" + this.sameHashes;
+    }
 }

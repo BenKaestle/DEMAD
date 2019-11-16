@@ -30,13 +30,13 @@ public class Testing {
 //        for (int i : compareJaccard(WriteReadObject.readJaccardIndex("main/jaccard_index/18_1000_bloom.txt"), Test_Values.output_java_18_1000_bloom)){
 //            System.out.print(i + ", ");
 //        }
-        String sequence = "ABCDEFG";
-        String reverseSequence = "GFEDCBA";
-        int length = sequence.length();
-        for (int i = 0; i <= sequence.length() - 3; i++) {
-            System.out.println(sequence.substring(i, i + 3));
-            System.out.println(reverseSequence.substring(length-i-3, length-i));
+        FileWriter fileWriter = new FileWriter("main/out_test.txt");
+        for (int i =0; i<4053; i++){
+            for (int j =0; j<4053; j++) {
+                fileWriter.write(i +"\t"+j+"\n");
+            }
         }
+        fileWriter.close();
 
     }
 

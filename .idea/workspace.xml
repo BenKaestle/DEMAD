@@ -7,8 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
+      <change afterPath="$PROJECT_DIR$/main/out_test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Testing.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/test/Testing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/test/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/test/Testing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/Distance.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/Distance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +71,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/Test" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -96,7 +104,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Testing">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="phylotree.Main" />
       <module name="main" />
@@ -186,9 +194,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Testing" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.ParseRefSeq" />
-        <item itemvalue="Application.Testing" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +211,9 @@
       <option name="presentableId" value="Default" />
       <updated>1571146698585</updated>
       <workItem from="1573473422979" duration="6933000" />
-      <workItem from="1573562954266" duration="8827000" />
+      <workItem from="1573562954266" duration="10188000" />
+      <workItem from="1573637350392" duration="2811000" />
+      <workItem from="1573811062173" duration="3862000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>
