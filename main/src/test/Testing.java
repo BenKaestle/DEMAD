@@ -1,14 +1,7 @@
 package test;
 
-import utility.BloomFilter;
-import utility.FastaParser;
-import utility.Sketch;
-import utility.WriteReadObject;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Testing {
     public static void main(String[] args) throws IOException {

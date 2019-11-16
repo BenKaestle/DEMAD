@@ -1,8 +1,8 @@
-package utility;
+package mash;
 
 import java.io.Serializable;
 
-public class Sketch implements Serializable {
+public class MashSketch implements Serializable {
     private long[] hashes;
     private String header;
     private String filename;
@@ -11,7 +11,7 @@ public class Sketch implements Serializable {
     private int genome_size;
     private int hashSeed;
 
-    public Sketch(long[] hashes, String header, String filename, int kmerSize, int hashFunction, int genome_size, int hashSeed) {
+    public MashSketch(long[] hashes, String header, String filename, int kmerSize, int hashFunction, int genome_size, int hashSeed) {
         this.hashes = hashes;
         this.header = header;
         this.filename = filename;

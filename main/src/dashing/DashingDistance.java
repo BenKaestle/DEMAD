@@ -1,6 +1,6 @@
-package utility;
+package dashing;
 
-public class Distance {
+public class DashingDistance {
     private String header_1;
     private String header_2;
     private float jaccard_index;
@@ -10,7 +10,7 @@ public class Distance {
     private String filePath2;
     private int sameHashes;
 
-    public Distance(String header_1, String header_2, float jaccard_index, double p_value, float mash_distance, String filePath1, String filePath2, int sameHashes) {
+    public DashingDistance(String header_1, String header_2, float jaccard_index, double p_value, float mash_distance, String filePath1, String filePath2, int sameHashes) {
         this.header_1 = header_1;
         this.header_2 = header_2;
         this.jaccard_index = jaccard_index;
@@ -21,15 +21,15 @@ public class Distance {
         this.sameHashes = sameHashes;
     }
 
-    public Distance(Distance distance){
-        this.header_1 = distance.header_2;
-        this.header_2 = distance.header_1;
-        this.jaccard_index = distance.jaccard_index;
-        this.p_value = distance.p_value;
-        this.mash_distance = distance.mash_distance;
-        this.filePath1 = distance.filePath2;
-        this.filePath2 = distance.filePath1;
-        this.sameHashes = distance.sameHashes;
+    public DashingDistance(DashingDistance dashingDistance){
+        this.header_1 = dashingDistance.header_2;
+        this.header_2 = dashingDistance.header_1;
+        this.jaccard_index = dashingDistance.jaccard_index;
+        this.p_value = dashingDistance.p_value;
+        this.mash_distance = dashingDistance.mash_distance;
+        this.filePath1 = dashingDistance.filePath2;
+        this.filePath2 = dashingDistance.filePath1;
+        this.sameHashes = dashingDistance.sameHashes;
     }
 
     public int getSameHashes() {

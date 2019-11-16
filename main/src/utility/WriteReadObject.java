@@ -1,5 +1,7 @@
 package utility;
 
+import mash.MashDistance;
+
 import java.io.*;
 
 public class WriteReadObject {
@@ -121,11 +123,11 @@ public class WriteReadObject {
         return null;
     }
 
-    public static void writeTxtFile(Distance[] distances, String out) {
+    public static void writeTxtFile(Object[] distances, String out) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(out+".txt");
-            for (Distance d : distances){
+            for (Object d : distances){
                 fileWriter.write(d.toString()+"\n");
             }
             fileWriter.close();

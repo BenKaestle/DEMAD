@@ -9,8 +9,10 @@ import java.util.Collections;
 public class Main {
 
     public static void main (String[] args){
-        System.out.println(ParseRefSeq.getAllCompleteGenomes(args[1]).size());
-        downloadFromYear(Integer.parseInt(args[0]), ParseRefSeq.getAllCompleteGenomes(args[1]));
+//        System.out.println(ParseRefSeq.getAllCompleteGenomes(args[1]).size());
+//        downloadFromYear(Integer.parseInt(args[0]), ParseRefSeq.getAllCompleteGenomes(args[1]));
+
+        applyMash(args[0],args[1]);
     }
 
     private static void applyMash(String filepath, String mashfilepath){
