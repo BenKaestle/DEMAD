@@ -202,6 +202,7 @@ public class InputParameters {
             System.out.println("To get information on a sketch, you need to input a valid *.msk file");
             System.exit(1);
         }
+        sequences = new SynchronizedList<>((ArrayList<String>)sequenceFiles.clone());
     }
 
     private void updateDashing(CommandLine cmd){
@@ -234,6 +235,7 @@ public class InputParameters {
             System.out.println("To get information on a sketch, you need to input a valid *.dsk file");
             System.exit(1);
         }
+        sequences = new SynchronizedList<>((ArrayList<String>)sequenceFiles.clone());
     }
 
     private void update(CommandLine cmd) {
@@ -316,8 +318,6 @@ public class InputParameters {
         }
 
         this.outputFile = cmd.getOptionValue("output","test");
-
-        sequences = new SynchronizedList<>((ArrayList<String>)sequenceFiles.clone());
     }
     public void calculateHashFunction(){
         this.hashFunction = (int) this.kmerSize/16;

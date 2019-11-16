@@ -6,25 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
-      <change afterPath="$PROJECT_DIR$/main/src/dashing/Dashing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/src/dashing/DashingDistance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/src/dashing/DashingSketch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/src/mash/MashDistance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/src/mash/MashSketch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/artifacts/k_mer_based_distance_algo_jar/k-mer_based_distance_algo.jar" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/artifacts/k_mer_based_distance_algo_jar/k-mer_based_distance_algo.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/test/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/test/Testing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/Distance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/InputParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/Sketch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" afterDir="false" />
-    </list>
+    <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +93,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Testing">
+  <component name="RunManager" selected="Application.Mash">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="phylotree.Main" />
       <module name="main" />
@@ -220,7 +202,7 @@
       <workItem from="1573473422979" duration="6933000" />
       <workItem from="1573562954266" duration="10188000" />
       <workItem from="1573637350392" duration="2811000" />
-      <workItem from="1573811062173" duration="10238000" />
+      <workItem from="1573811062173" duration="10526000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>
