@@ -123,11 +123,11 @@ public class WriteReadObject {
         return null;
     }
 
-    public static void writeTxtFile(Object[] distances, String out) {
+    public static void writeTxtFile(MashDistance[] distances, String out) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(out+".txt");
-            for (Object d : distances){
+            for (MashDistance d : distances){
                 fileWriter.write(d.toString()+"\n");
             }
             fileWriter.close();

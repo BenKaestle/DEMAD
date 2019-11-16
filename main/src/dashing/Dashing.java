@@ -45,7 +45,7 @@ public class Dashing {
                 Arrays.sort(distances1, Comparator.comparing(a -> a.getFilePath1()));
                 Arrays.sort(distances1,Comparator.comparing(a -> a.getFilePath2()));
                 System.out.println();
-                WriteReadObject.writeTxtFile(dashingDistances, parameters.outputFile);
+//                WriteReadObject.writeTxtFile(dashingDistances, parameters.outputFile);
                 for (DashingDistance d : distances1) {
 
 //                    System.out.print(d.getSameHashes()+", ");

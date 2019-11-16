@@ -70,26 +70,23 @@ final class DistTask implements Callable<ArrayList<MashDistance>>
                     pointer_2--;
                 }
             }
-            jaccard_index = (float) same_hash_counter/sketch_length; //todo jaccard estimate = jaccard index???
-//            if (jaccard_index==0f)
-//                mash_distance=1;
-//            else
-//                mash_distance = -1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
-            mash_distance = (jaccard_index==0f)? 1:-1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
-            genome_size_1 = mashSketch_1.getGenome_size();
-            genome_size_2 = mashSketch_2.getGenome_size();
-            pkx = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_1);
-            pky = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_2);
-            r = pkx*pky/(pkx+pky-pkx*pky);
-            p_value=1;
-            for (int i =0; i<same_hash_counter;i++){
-                p_value -= (binom(sketch_length,i)*Math.pow(r,i)*Math.pow((1-r),(sketch_length-i)));
-            }
+//            jaccard_index = (float) same_hash_counter/sketch_length; //todo jaccard estimate = jaccard index???
+//            mash_distance = (jaccard_index==0f)? 1:-1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
+//            genome_size_1 = mashSketch_1.getGenome_size();
+//            genome_size_2 = mashSketch_2.getGenome_size();
+//            pkx = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_1);
+//            pky = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_2);
+//            r = pkx*pky/(pkx+pky-pkx*pky);
+//            p_value=1;
+//            for (int i =0; i<same_hash_counter;i++){
+//                p_value -= (binom(sketch_length,i)*Math.pow(r,i)*Math.pow((1-r),(sketch_length-i)));
+//            }
             if (parameters.pairsOfSketches.size()%1000==0){
                 System.out.println("comparison finished by thread " + this.name +"\t"+parameters.pairsOfSketches.size()+" comparisons left");
             }
 
-            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
+            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), 0, 0, 0, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
+//            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
             latch.countDown();
         }
         return mashDistances;
