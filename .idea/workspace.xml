@@ -8,6 +8,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/output.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/output2.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/output_gap3.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/output_gap5.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/output_gap5_first.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/output_new.fasta" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +210,7 @@
       <workItem from="1573473422979" duration="6933000" />
       <workItem from="1573562954266" duration="10188000" />
       <workItem from="1573637350392" duration="2811000" />
-      <workItem from="1573811062173" duration="16708000" />
+      <workItem from="1573811062173" duration="16849000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>
