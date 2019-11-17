@@ -22,6 +22,15 @@ public class Main {
             command.concat(s+" ");
         }
         command.concat("-o "+filepath+"/sketchout -p 100");
+
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec(command);
+            p.waitFor();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static ArrayList<String> getAllFilesFromDir (String filepath){
