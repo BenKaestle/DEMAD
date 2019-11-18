@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class InputParameters {
     public SynchronizedList<String> sequences;
-    public SynchronizedList<MashSketch[]> pairsOfSketches;
+    public SynchronizedList<MashSketch> mashSketchesSynch;
+    public SynchronizedList<DashingSketch> dashingSketchesSynch;
     public int sketchSize = 1000;
     public int kmerSize = 21;
     public int cores = 4;
@@ -30,6 +31,10 @@ public class InputParameters {
 
 
     public void parseInputDashing(String[] args){
+        if (args.length == 0){
+            System.out.println("Choose one of: sketch, dist, info");
+            System.exit(1);
+        }
         this.type = args[0].trim();
         if (!type.equals("sketch") && !type.equals("dist") && !type.equals("info")){
             System.out.println("Choose one of: sketch, dist, info");
@@ -102,6 +107,10 @@ public class InputParameters {
 
 
     public void parseInputMash(String[] args){
+        if (args.length == 0){
+            System.out.println("Choose one of: sketch, dist, info");
+            System.exit(1);
+        }
         this.type = args[0].trim();
         if (!type.equals("sketch") && !type.equals("dist") && !type.equals("info")){
             System.out.println("Choose one of: sketch, dist, info");

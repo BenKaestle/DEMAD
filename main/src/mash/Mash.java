@@ -46,30 +46,29 @@ final class DistTask implements Callable<ArrayList<MashDistance>>
     public ArrayList<MashDistance> call(){
         mashDistances = new ArrayList<>();
         int pointer_1, pointer_2;
-        while (!parameters.pairsOfSketches.isEmpty()) {
-            mashSketches = parameters.pairsOfSketches.get();
+        while (!parameters.mashSketchesSynch.isEmpty()) {
+            mashSketch_1 = parameters.mashSketchesSynch.get();
             if (mashSketches ==null) break;
-            mashSketch_1 = mashSketches[0];
-            mashSketch_2 = mashSketches[1];
-            pointer_1= mashSketch_1.getHashes().length-1;
-            pointer_2= mashSketch_2.getHashes().length-1;
-            sketch_length = Math.min(mashSketch_1.getHashes().length, mashSketch_2.getHashes().length);
-            same_hash_counter=0;
-            for (int i =0; i<sketch_length ;i++){
-                current_hash_1 = mashSketch_1.getHashes()[pointer_1];
-                current_hash_2 = mashSketch_2.getHashes()[pointer_2];
-                if (current_hash_1>current_hash_2){
-                    pointer_2--;
+            for (MashSketch mashSketch_2:parameters.mashSketches) {
+                pointer_1 = mashSketch_1.getHashes().length - 1;
+                pointer_2 = mashSketch_2.getHashes().length - 1;
+                sketch_length = Math.min(mashSketch_1.getHashes().length, mashSketch_2.getHashes().length);
+                same_hash_counter = 0;
+                for (int i = 0; i < sketch_length; i++) {
+                    current_hash_1 = mashSketch_1.getHashes()[pointer_1];
+                    current_hash_2 = mashSketch_2.getHashes()[pointer_2];
+                    if (current_hash_1 > current_hash_2) {
+                        pointer_2--;
+                    }
+                    if (current_hash_1 < current_hash_2) {
+                        pointer_1--;
+                    }
+                    if (current_hash_1 == current_hash_2) {
+                        same_hash_counter++;
+                        pointer_1--;
+                        pointer_2--;
+                    }
                 }
-                if (current_hash_1<current_hash_2){
-                    pointer_1--;
-                }
-                if (current_hash_1==current_hash_2){
-                    same_hash_counter++;
-                    pointer_1--;
-                    pointer_2--;
-                }
-            }
 //            jaccard_index = (float) same_hash_counter/sketch_length; //todo jaccard estimate = jaccard index???
 //            mash_distance = (jaccard_index==0f)? 1:-1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
 //            genome_size_1 = mashSketch_1.getGenome_size();
@@ -81,12 +80,12 @@ final class DistTask implements Callable<ArrayList<MashDistance>>
 //            for (int i =0; i<same_hash_counter;i++){
 //                p_value -= (binom(sketch_length,i)*Math.pow(r,i)*Math.pow((1-r),(sketch_length-i)));
 //            }
-            if (parameters.pairsOfSketches.size()%1000==0){
-                System.out.println("comparison finished by thread " + this.name +"\t"+parameters.pairsOfSketches.size()+" comparisons left");
-            }
 
-            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), 0, 0, 0, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
+
+                mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), 0, 0, 0, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
 //            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
+            }
+            System.out.println("comparison finished by thread " + this.name + "\t" + parameters.mashSketchesSynch.size() + " comparisons left");
             latch.countDown();
         }
         return mashDistances;
@@ -188,7 +187,7 @@ final class KmerTask implements Callable<ArrayList<MashSketch>>
             Arrays.fill(sketchHashes, Long.MAX_VALUE);
             mashSketch = new MashSketch(sketchHashes, sequenceInfo[0],path, parameters.kmerSize, parameters.hashFunction, sequence.length(), parameters.seed);
             long hash = 0;
-            bloomFilter = new BloomFilter(parameters.bloomFilterSize,parameters.bloomFilterHashes);
+            if (parameters.bloomFilter) bloomFilter = new BloomFilter(parameters.bloomFilterSize,parameters.bloomFilterHashes);
             sketchSet = new SketchSet(5);
             sequenceLength = sequence.length();
             if (parameters.hashFunction==1) { //murmur3 x64_128
@@ -428,22 +427,13 @@ public class Mash {
     }
 
     private static MashDistance[] mash_dist (MashSketch[] mashSketches, InputParameters parameters){
-        int length = mashSketches.length;
-        ArrayList<MashSketch[]> pairOfMashSketches = new ArrayList<>();
-        for (int i =0; i<length;i++){
-            for (int j =i+1; j<length;j++){
-                pairOfMashSketches.add(new MashSketch[]{mashSketches[i], mashSketches[j]});
-            }
-
-        }
-        parameters.pairsOfSketches = new SynchronizedList<>(pairOfMashSketches);
+        parameters.mashSketches=mashSketches;
+        parameters.mashSketchesSynch = new SynchronizedList<MashSketch>(new ArrayList<MashSketch>(Arrays.asList(mashSketches)));
         return mash_dist_in_parallel(parameters);
-
-
     }
 
     private static MashDistance[] mash_dist_in_parallel(InputParameters parameters) {
-        int threads=parameters.pairsOfSketches.size();
+        int threads=parameters.mashSketchesSynch.size();
         ExecutorService pool = Executors.newFixedThreadPool(parameters.cores);
         CountDownLatch latch = new CountDownLatch(threads);
         Future<ArrayList<MashDistance>>[] results = new Future[parameters.cores];

@@ -3,22 +3,40 @@ package dashing;
 import java.io.Serializable;
 
 public class DashingSketch implements Serializable {
-    private long[] hashes;
+    private int[] register;
     private String header;
     private String filename;
     private int kmerSize;
     private int hashFunction;
     private int genome_size;
     private int hashSeed;
+    private float harmonicMean;
+    private boolean noHarmonicMean = true;
 
-    public DashingSketch(long[] hashes, String header, String filename, int kmerSize, int hashFunction, int genome_size, int hashSeed) {
-        this.hashes = hashes;
+    public DashingSketch(int[] register, String header, String filename, int kmerSize, int hashFunction, int genome_size, int hashSeed) {
+        this.register = register;
         this.header = header;
         this.filename = filename;
         this.kmerSize = kmerSize;
         this.hashFunction = hashFunction;
         this.genome_size = genome_size;
         this.hashSeed = hashSeed;
+    }
+
+    public boolean hasNoHarmonicMean() {
+        return noHarmonicMean;
+    }
+
+    public void setNoHarmonicMean(boolean noHarmonicMean) {
+        this.noHarmonicMean = noHarmonicMean;
+    }
+
+    public float getHarmonicMean() {
+        return harmonicMean;
+    }
+
+    public void setHarmonicMean(float harmonicMean) {
+        this.harmonicMean = harmonicMean;
     }
 
     public String getFilename() {
@@ -33,8 +51,8 @@ public class DashingSketch implements Serializable {
         return hashFunction;
     }
 
-    public long[] getHashes() {
-        return hashes;
+    public int[] getRegister() {
+        return register;
     }
 
     public int getGenome_size() {
@@ -58,7 +76,7 @@ public class DashingSketch implements Serializable {
                 "kmer size:        "+ kmerSize+"\n"+
                 "genome size:      "+ genome_size+"\n"+
                 "filename:         "+ filename+"\n"+
-                "Number of hashes: "+ hashes.length+"\n"
+                "size of register: "+ register.length+"\n"
 //                +
 //                hashes[0]+"\n"+
 //                hashes[2]+"\n"+

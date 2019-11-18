@@ -2,6 +2,8 @@ package test;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.BitSet;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
@@ -23,15 +25,59 @@ public class Testing {
 //        for (int i : compareJaccard(WriteReadObject.readJaccardIndex("main/jaccard_index/18_1000_bloom.txt"), Test_Values.output_java_18_1000_bloom)){
 //            System.out.print(i + ", ");
 //        }
-        FileWriter fileWriter = new FileWriter("main/out_test.txt");
-        for (int i =0; i<4053; i++){
-            for (int j =0; j<4053; j++) {
-                fileWriter.write(i +"\t"+j+"\n");
-            }
-        }
-        fileWriter.close();
+
+        testing(args);
 
     }
+
+    public static void testing(String[] args){
+
+
+
+
+
+
+
+
+
+    }
+
+
+    static int countZeros(long val, int prefixSize)
+    {
+        long y;
+        int n = 64;
+        y = val >> 32;
+        if (y != 0) {
+            n = n - 32;
+            val = y;
+        }
+        y = val >> 16;
+        if (y != 0) {
+            n = n - 16;
+            val = y;
+        }
+        y = val >> 8;
+        if (y != 0) {
+            n = n - 8;
+            val = y;
+        }
+        y = val >> 4;
+        if (y != 0) {
+            n = n - 4;
+            val = y;
+        }
+        y = val >> 2;
+        if (y != 0) {
+            n = n - 2;
+            val = y;
+        }
+        y = val >> 1;
+        if (y != 0)
+            return n - 2;
+        return n - (int)val;
+    }
+
 
     public static String canonical_kmer (String kmer){
         String reverse = "";
