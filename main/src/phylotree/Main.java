@@ -25,7 +25,10 @@ public class Main {
             String line = "";
             FileWriter fileWriter = null;
             fileWriter = new FileWriter(filepath+"_out.txt");
+            int i =0;
             while ((line = buf.readLine()) != null) {
+                i++;
+                if (i%1000==0) System.out.println(i);
                 fileWriter.write(line + "\n");
             }
             fileWriter.close();
