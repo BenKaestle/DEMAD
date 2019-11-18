@@ -19,7 +19,7 @@ public class Main {
     private static void applyMash(String filepath) throws IOException {
         Process p = null;
         try {
-            p = Runtime.getRuntime().exec("/home/kaestle/Mash/mash-Linux64-v2.2/mash dist "+filepath+" "+filepath+" -p 100 -t\n");
+            p = Runtime.getRuntime().exec("/home/kaestle/Mash/mash-Linux64-v2.2/mash dist "+filepath+" "+filepath+" -p 100\n");
             BufferedReader buf = new BufferedReader(new InputStreamReader(
                     p.getInputStream()));
             String line = "";
