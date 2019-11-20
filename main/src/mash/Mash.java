@@ -310,8 +310,8 @@ public class Mash {
             if (parameters.tableOutput) {
                 printTable(tableOutput(mashDistances, parameters.sequenceFiles));
             } else {
-                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath1()));
-                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath2()));
+//                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath1()));
+//                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath2()));
                 System.out.println();
                 WriteReadObject.writeTxtFile(mashDistances, parameters.outputFile);
                 for (MashDistance d : mashDistances) {

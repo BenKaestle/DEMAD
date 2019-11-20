@@ -9,6 +9,9 @@
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/test/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/test/Testing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +104,7 @@
     <configuration name="Mash" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mash.Mash" />
       <module name="main" />
-      <option name="PROGRAM_PARAMETERS" value="dist -i main/res -p 2" />
+      <option name="PROGRAM_PARAMETERS" value="dist -i main/res " />
       <option name="VM_PARAMETERS" value="-XX:+UnlockCommercialFeatures" />
       <extension name="coverage">
         <pattern>
@@ -195,7 +198,7 @@
       <workItem from="1573562954266" duration="10188000" />
       <workItem from="1573637350392" duration="2811000" />
       <workItem from="1573811062173" duration="34871000" />
-      <workItem from="1574180757933" duration="455000" />
+      <workItem from="1574180757933" duration="3399000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>

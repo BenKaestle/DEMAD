@@ -1,9 +1,13 @@
 package test;
 
+import utility.WriteReadObject;
+
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Collections;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
@@ -32,6 +36,7 @@ public class Testing {
 
     public static void testing(String[] args){
 
+        readSortWriteList(args[0]);
 
 
 
@@ -39,7 +44,12 @@ public class Testing {
 
 
 
+    }
 
+    public static void readSortWriteList(String filepath){
+        ArrayList<String> data = WriteReadObject.readTxt(filepath);
+        Collections.sort(data);
+        WriteReadObject.writeTxt(filepath, data);
     }
 
 

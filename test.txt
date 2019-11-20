@@ -1,9 +1,9 @@
 main\res\genome1.fna	main\res\genome1.fna	-0.0	-2.842171170543972E-10	1000
-main\res\genome2.fna	main\res\genome1.fna	0.02360202	1.8339394756697266E-5	438
-main\res\genome3.fna	main\res\genome1.fna	4.769056E-5	-2.842171170543972E-10	998
-main\res\genome1.fna	main\res\genome2.fna	0.02360202	1.8339394756697266E-5	438
-main\res\genome2.fna	main\res\genome2.fna	-0.0	2.980148085487831E-5	1000
-main\res\genome3.fna	main\res\genome2.fna	0.02360202	1.8339394756697266E-5	438
 main\res\genome1.fna	main\res\genome3.fna	4.769056E-5	-2.842171170543972E-10	998
+main\res\genome1.fna	main\res\genome2.fna	0.02360202	1.8339394756697266E-5	438
+main\res\genome2.fna	main\res\genome1.fna	0.02360202	1.8339394756697266E-5	438
 main\res\genome2.fna	main\res\genome3.fna	0.02360202	1.8339394756697266E-5	438
+main\res\genome2.fna	main\res\genome2.fna	-0.0	2.980148085487831E-5	1000
+main\res\genome3.fna	main\res\genome1.fna	4.769056E-5	-2.842171170543972E-10	998
 main\res\genome3.fna	main\res\genome3.fna	-0.0	-2.842171170543972E-10	1000
+main\res\genome3.fna	main\res\genome2.fna	0.02360202	1.8339394756697266E-5	438

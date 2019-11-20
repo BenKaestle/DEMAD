@@ -3,6 +3,7 @@ package utility;
 import mash.MashDistance;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class WriteReadObject {
 
@@ -121,6 +122,38 @@ public class WriteReadObject {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static ArrayList<String> readTxt(String filepath){
+        BufferedReader reader;
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            reader = new BufferedReader(new FileReader(filepath));
+            String line = reader.readLine();
+            while (line != null) {
+                result.add(line);
+                line = reader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static void writeTxt (String filepath, ArrayList<String> data){
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(filepath+".txt");
+            for (String d : data){
+                fileWriter.write(d+"\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void writeTxtFile(MashDistance[] distances, String out) {
