@@ -207,21 +207,21 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
 
                     if (hash < sketchHashes[0]) {
                         if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
-                            boolean contains = false;
-                            for (int j = 0; j < parameters.sketchSize; j++) {
-                                if (sketchHashes[j] == hash) {
-                                    contains = true;
-                                    break;
-                                }
-                            }
-                            if (!contains) {
+//                            boolean contains = false;
+//                            for (int j = 0; j < parameters.sketchSize; j++) {
+//                                if (sketchHashes[j] == hash) {
+//                                    contains = true;
+//                                    break;
+//                                }
+//                            }
+//                            if (!contains) {
                                 boolean last = false;
                                 for (int j = 1; j < parameters.sketchSize; j++) {
                                     if (hash < sketchHashes[j]) {
                                         sketchHashes[j - 1] = sketchHashes[j];
                                     } else if (hash == sketchHashes[j]) {
-                                        System.out.println("duplicate");
-                                        System.out.println(hash);
+//                                        System.out.println("duplicate");
+//                                        System.out.println(hash);
                                     } else {
                                         sketchHashes[j - 1] = hash;
                                         last = true;
@@ -231,7 +231,7 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
                                 if (!last) {
                                     sketchHashes[parameters.sketchSize - 1] = hash;
                                 }
-                            }
+//                            }
                         } else {
                             bloomFilter.add(kmer);
                         }
@@ -239,28 +239,31 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
                 }
             } else if (parameters.hashFunction == 0) { //murmur3 x86_32
                 for (int i = 0; i <= sequence.length() - parameters.kmerSize; i++) {
-                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
+                    kmer = sequence.substring(i, i + parameters.kmerSize);
+                    reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
+                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
+//                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
                     hash = Murmur3.murmurhash3_x86_32(kmer, 0, parameters.kmerSize, parameters.seed);
 
                     count++;
 
                     if (hash < sketchHashes[0]) {
                         if (parameters.bloomFilter && bloomFilter.contains(kmer) || !parameters.bloomFilter) {
-                            boolean contains = false;
-                            for (int j = 0; j < parameters.sketchSize; j++) {
-                                if (sketchHashes[j] == hash) {
-                                    contains = true;
-                                    break;
-                                }
-                            }
-                            if (!contains) {
+//                            boolean contains = false;
+//                            for (int j = 0; j < parameters.sketchSize; j++) {
+//                                if (sketchHashes[j] == hash) {
+//                                    contains = true;
+//                                    break;
+//                                }
+//                            }
+//                            if (!contains) {
                                 boolean last = false;
                                 for (int j = 1; j < parameters.sketchSize; j++) {
                                     if (hash < sketchHashes[j]) {
                                         sketchHashes[j - 1] = sketchHashes[j];
                                     } else if (hash == sketchHashes[j]) {
-                                        System.out.println("duplicate");
-                                        System.out.println(hash);
+//                                        System.out.println("duplicate");
+//                                        System.out.println(hash);
                                     } else {
                                         sketchHashes[j - 1] = hash;
                                         last = true;
@@ -270,7 +273,7 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
                                 if (!last) {
                                     sketchHashes[parameters.sketchSize - 1] = hash;
                                 }
-                            }
+//                            }
                         } else {
                             bloomFilter.add(kmer);
                         }

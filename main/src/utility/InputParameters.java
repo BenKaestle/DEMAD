@@ -56,7 +56,7 @@ public class InputParameters {
         if (this.type.equals("sketch")) output.setRequired(true);
         options.addOption(output);
 
-        Option prefixSize = new Option("ps", "prefixSize", true, "length of the prefix (log2 of register size) (default = 8)");
+        Option prefixSize = new Option("ps", "prefixSize", true, "length of the prefix (log2 of register size) (default = 10)");
         options.addOption(prefixSize);
 
         Option kmerSize = new Option("k", "kmerSize", true, "length of kmers (default = 21)");
@@ -286,10 +286,10 @@ public class InputParameters {
             this.sketchSize = 1000;
         }
 
-        this.prefixSize = Integer.parseInt(cmd.getOptionValue("prefixSize","8"));
+        this.prefixSize = Integer.parseInt(cmd.getOptionValue("prefixSize","10"));
         if (prefixSize<1){
-            System.out.println("WARNING: minimum prefixSize is 1 -> your value got increased to 8 (default)");
-            this.prefixSize = 21;
+            System.out.println("WARNING: minimum prefixSize is 1 -> your value got increased to 10 (default)");
+            this.prefixSize = 10;
         }
 
         this.kmerSize = Integer.parseInt(cmd.getOptionValue("kmerSize","21"));
