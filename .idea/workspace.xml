@@ -8,11 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/dashing/Dashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/Dashing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/CompleteGenome.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/CompleteGenome.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,17 +44,17 @@
     <property name="settings.editor.selected.configurable" value="profiler.jvm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main" />
+      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\jaccard_index" />
+      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\src2" />
+      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\res" />
+      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\lib" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\src2" />
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\res" />
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\resources" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\jaccard_index" />
-      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main" />
-      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\src2" />
-      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\res" />
-      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\lib" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -200,7 +197,7 @@
       <workItem from="1573637350392" duration="2811000" />
       <workItem from="1573811062173" duration="34871000" />
       <workItem from="1574180757933" duration="4983000" />
-      <workItem from="1574257838296" duration="8232000" />
+      <workItem from="1574257838296" duration="10680000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>

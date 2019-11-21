@@ -20,8 +20,44 @@ public class Main {
         combineLists(args);
     }
 
-    private static void combineLists(String[] args) {
+    private static void combineLists(String[] args) throws FileNotFoundException {
+        FileWriter fileWriter = null;
+        ArrayList<BufferedReader> listOfReaders = new ArrayList<>();
+        String line;
+        String result = "";
+        String subresult = "";
+        boolean next = true;
+        String[] split;
+        for (int i = 1; i < args.length; i++) {
+            listOfReaders.add(new BufferedReader(new FileReader(args[i])));
+        }
+        try {
+            fileWriter = new FileWriter(args[0] + ".txt");
+            while (next) {
+                for (BufferedReader r : listOfReaders) {
+                    line = r.readLine();
+                    if (line != null) {
+                        split = line.split("\t");
+                        if (split.length == 1) subresult = line;
+                        else if (split.length == 5) {
+                            subresult = split[2] + "\t" + split[3] + "\t" + split[4].split("/")[0];
+                        } else {
+                            System.out.println("wtf");
+                        }
+                        result += subresult + "\t";
+                    }
+                }
+                if (result == "")
+                    next = false;
+                else
+                    fileWriter.write(result + "\n");
+                result = "";
+            }
 
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
