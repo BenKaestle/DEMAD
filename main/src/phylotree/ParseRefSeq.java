@@ -19,7 +19,8 @@ public class ParseRefSeq {
                 if (!line.startsWith("#")) {
                     split = line.split("\t");
                     if(split[11].trim().equals("Complete Genome")){
-                        CompleteGenome x = new CompleteGenome(split[19]+"/"+split[19].split("/")[split[19].split("/").length-1]+"_genomic.fna.gz", Integer.parseInt(split[14].split("/")[0]), split[0], Integer.parseInt(split[5]));
+                        CompleteGenome x = new CompleteGenome(split[19]+"/"+split[19].split("/")[split[19].split("/").length-1]+"_genomic.fna.gz",
+                                Integer.parseInt(split[14].split("/")[0]), split[0], Integer.parseInt(split[5]),Integer.parseInt(split[6]));
                         result.add(x);
                     }
 

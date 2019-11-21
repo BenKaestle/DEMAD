@@ -84,7 +84,7 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
 //                mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), 0, 0, 0, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
                 mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
             }
-            System.out.println("comparison finished by thread " + this.name + "\t" + parameters.mashSketchesSynch.size() + " comparisons left");
+            System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.mashSketchesSynch.size()+parameters.cores) + " comparisons left");
             latch.countDown();
         }
         return mashDistances;
@@ -282,7 +282,7 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
             } else {
                 throw new Exception("no such Hash-Function");
             }
-            System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t" + parameters.sequences.size() + " genomes left");
+            System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t" + (parameters.sequences.size()+parameters.cores) + " genomes left");
             latch.countDown();
             mashSketches.add(mashSketch);
         }
@@ -313,8 +313,8 @@ public class Mash {
             if (parameters.tableOutput) {
                 printTable(tableOutput(mashDistances, parameters.sequenceFiles));
             } else {
-//                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath1()));
-//                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath2()));
+                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath1()));
+                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath2()));
                 System.out.println();
                 WriteReadObject.writeTxtFile(mashDistances, parameters.outputFile);
                 for (MashDistance d : mashDistances) {

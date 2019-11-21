@@ -115,6 +115,7 @@ final class DistTask implements Callable<ArrayList<DashingDistance>>
 //            }
 
 //            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
+            System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.dashingSketchesSynch.size()+parameters.cores) + " comparisons left");
             latch.countDown();
         }
         return dashingDistances;
@@ -253,7 +254,7 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
                     }
                 }
             }
-            System.out.println("kmers hashed: " + count + " by thread " + this.name +"\t"+parameters.sequences.size()+" genomes left");
+            System.out.println("kmers hashed: " + count + " by thread " + this.name +"\t"+(parameters.cores+parameters.sequences.size())+" genomes left");
             latch.countDown();
             dashingSketches.add(dashingSketch);
         }

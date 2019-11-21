@@ -8,9 +8,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/InputParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/InputParameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/dashing/Dashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/Dashing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/InputParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/CompleteGenome.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/CompleteGenome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +39,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/Test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -70,7 +72,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Dashing">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Dashing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dashing.Dashing" />
       <module name="main" />
@@ -89,7 +91,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="phylotree.Main" />
       <module name="main" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PROGRAM_PARAMETERS" value="main/res/assembly_summary_refseq.txt" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="phylotree.*" />
@@ -176,9 +178,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Dashing" />
         <item itemvalue="Application.Testing" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.ParseRefSeq" />
       </list>
     </recent_temporary>
@@ -198,7 +200,7 @@
       <workItem from="1573637350392" duration="2811000" />
       <workItem from="1573811062173" duration="34871000" />
       <workItem from="1574180757933" duration="4983000" />
-      <workItem from="1574257838296" duration="2562000" />
+      <workItem from="1574257838296" duration="8232000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>
