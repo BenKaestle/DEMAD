@@ -2,8 +2,7 @@ package test;
 
 import utility.WriteReadObject;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -34,27 +33,169 @@ public class Testing {
 
     }
 
-    public static void testing(String[] args){
+    public static void testing(String[] args) {
 
-        readSortWriteList(args[0]);
-
-
-
-
-
+        writeTSVtable(readPhylip("dashing_original.phylip"));
 
 
     }
 
-    public static void readSortWriteList(String filepath){
+    public static void writeTSVtable(String[][] table) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("comparison2"+".txt");
+            for (String[] row : table){
+                for (String cell:row){
+                    fileWriter.write(cell+"\t");
+                }
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void writeTSVtable(float[][] table) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("comparison1"+".txt");
+            for (float[] row : table){
+                for (float cell:row){
+                    fileWriter.write(cell+"\t");
+                }
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String[][] readTSVtable(String filepath) {
+        BufferedReader reader;
+        String table = "";
+        String current;
+        try {
+            reader = new BufferedReader(new FileReader(filepath));
+            while ((current = reader.readLine()) != null) {
+                table+= current+"\n";
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(table);
+        int columns = 0;
+        int rows = 0;
+        for (String row : table.split("\n")) {
+            if (rows == 0) {
+                for (String cell : row.split("\\s+|\t")) {
+                    columns++;
+                }
+            }
+            rows++;
+        }
+        String[][] result = new String[rows][columns];
+        rows = 0;
+        for (String row : table.split("\n")) {
+            columns = 0;
+            for (String cell : row.split("\\s+|\t")) {
+                result[rows][columns] = cell;
+                columns++;
+            }
+            rows++;
+        }
+        return result;
+    }
+
+    public static String[][] readPhylip(String filepath) {
+        BufferedReader reader;
+        String table = "";
+        String current;
+        try {
+            reader = new BufferedReader(new FileReader(filepath));
+            reader.readLine();
+            while ((current = reader.readLine()) != null) {
+                table+= current.substring(12)+"\n";
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(table);
+        int columns = 0;
+        int rows = 0;
+        for (String row : table.split("\n")) {
+            if (rows == 0) {
+                for (String cell : row.split("\\s+|\t")) {
+                    columns++;
+                }
+            }
+            rows++;
+        }
+        String[][] result = new String[rows][columns];
+        rows = 0;
+        for (String row : table.split("\n")) {
+            columns = 0;
+            for (String cell : row.split("\\s+|\t")) {
+                result[rows][columns] = cell;
+                columns++;
+            }
+            rows++;
+        }
+        return result;
+    }
+
+
+    public static String[][] readAndCombineTable(String filepath) {
+
+        String[][] table = readTSVtable(filepath);
+        String[][] table2 = new String[table.length][table[0].length];
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[0].length; j++) {
+                if (table[i][j]!="-") table[j][i]=table[i][j];
+                if (i==j) table[i][j]="1";
+            }
+        }
+        int x,y;
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[0].length; j++) {
+                if (i==0) table2[i][j]=j+".fna";
+                else if (j==0) table2[i][j]=i+".fna";
+                else{
+                    x=Integer.parseInt(table[0][j].replace(".fna",""));
+                    y=Integer.parseInt(table[i][0].replace(".fna",""));
+                    table2[x][y] = table[i][j];
+                }
+
+            }
+        }
+
+        return table2;
+    }
+
+
+    public static float harmonicMean(int[] register) {
+        float ALPHA_M = (float) (1 / (2 * Math.log(2)));
+        int registerSize = register.length;
+        float denominator = 0;
+        for (int i = 0; i < registerSize; i++) {
+            denominator += Math.pow(2, -(register[i] + 1));
+        }
+        return (ALPHA_M * registerSize * registerSize) / denominator;
+    }
+
+
+    public static void readSortWriteList(String filepath) {
         ArrayList<String> data = WriteReadObject.readTxt(filepath);
         Collections.sort(data);
         WriteReadObject.writeTxt(filepath, data);
     }
 
 
-    static int countZeros(long val, int prefixSize)
-    {
+    static int countZeros(long val, int prefixSize) {
         long y;
         int n = 64;
         y = val >> 32;
@@ -85,28 +226,28 @@ public class Testing {
         y = val >> 1;
         if (y != 0)
             return n - 2;
-        return n - (int)val;
+        return n - (int) val;
     }
 
 
-    public static String canonical_kmer (String kmer){
+    public static String canonical_kmer(String kmer) {
         String reverse = "";
-        for (int i=kmer.length()-1; i>=0;i--){
-            switch (kmer.charAt(i)){
+        for (int i = kmer.length() - 1; i >= 0; i--) {
+            switch (kmer.charAt(i)) {
                 case 'A':
-                    reverse+="T";
+                    reverse += "T";
                     break;
                 case 'T':
-                    reverse+="A";
+                    reverse += "A";
                     break;
                 case 'G':
-                    reverse+="C";
+                    reverse += "C";
                     break;
                 case 'C':
-                    reverse+="G";
+                    reverse += "G";
                     break;
                 default:
-                    reverse+="N";
+                    reverse += "N";
                     break;
             }
         }
@@ -117,7 +258,7 @@ public class Testing {
 
 
     private static int[] compareJaccard(int[] values1, int[] values2) {
-        for (int i=0;i<values1.length;i++) {
+        for (int i = 0; i < values1.length; i++) {
             values1[i] -= values2[i];
         }
         return values1;

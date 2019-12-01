@@ -71,7 +71,7 @@ public class InputParameters {
         Option tableOut = new Option("t", "table", false, "output a distance matrix (only mash dist)");
         options.addOption(tableOut);
 
-        Option hashFunction = new Option("h", "hashFunction", true, "which hash-function should be used");
+        Option hashFunction = new Option("hf", "hashFunction", true, "which hash-function should be used");
         options.addOption(hashFunction);
 
         Option seed = new Option("S", "seed", true, "seed used for hash function (default = 42)");

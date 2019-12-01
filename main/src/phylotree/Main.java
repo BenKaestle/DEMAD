@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Main {
+    //java -jar /home/kaestle/Mash/data/k-mer_based_distance_algo/main/out/artifacts/k_mer_based_distance_algo_jar/k-mer_based_distance_algo.jar phylotest bigTable new_15_1000_f.txt new_15_1000_f_64bit.txt new_15_1000_f_duplicates.txt new_15_1000_f_duplicates_64bit.txt new_18_1000_f.txt new_18_1000_f_duplicates.txt new_21_1000_f.txt new_21_1000_f_duplicates.txt original_15_1000_f.msh_out.txt original_18_1000_f.msh_out.txt original_21_1000_f.msh_out.txt phylo_dist3.txt
 
     public static void main(String[] args) throws IOException {
 //        System.out.println(ParseRefSeq.getAllCompleteGenomes(args[1]).size());
@@ -59,6 +60,8 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+
 
 
     private static void constructPhyloList(String[] args) {

@@ -1,6 +1,7 @@
 package dashing;
 
 import hash_functions.Murmur3;
+import hash_functions.Wang;
 import mash.MashSketch;
 import utility.*;
 
@@ -73,7 +74,8 @@ final class DistTask implements Callable<ArrayList<DashingDistance>>
                 }
                 harmonicMean_c = harmonicMean(combinedRegister);
                 jaccard_index=(harmonicMean_1+harmonicMean_2-harmonicMean_c)/harmonicMean_c;
-                System.out.println(jaccard_index + " "+harmonicMean_1 + " "+harmonicMean_2 + " "+harmonicMean_c + " ");
+                if (jaccard_index<0)jaccard_index=0;
+//                System.out.println(jaccard_index + " "+harmonicMean_1 + " "+harmonicMean_2 + " "+harmonicMean_c + " ");
 
 
 
@@ -81,40 +83,6 @@ final class DistTask implements Callable<ArrayList<DashingDistance>>
 
                 dashingDistances.add(new DashingDistance(dashingSketch_1.getHeader(), dashingSketch_2.getHeader(), jaccard_index, 0, 0, dashingSketch_1.getFilename(), dashingSketch_2.getFilename(), 0));
             }
-//            pointer_1= mashSketch_1.getHashes().length-1;
-//            pointer_2= mashSketch_2.getHashes().length-1;
-//            sketch_length = Math.min(mashSketch_1.getHashes().length, mashSketch_2.getHashes().length);
-//            same_hash_counter=0;
-//            for (int i =0; i<sketch_length ;i++){
-//                current_hash_1 = mashSketch_1.getHashes()[pointer_1];
-//                current_hash_2 = mashSketch_2.getHashes()[pointer_2];
-//                if (current_hash_1>current_hash_2){
-//                    pointer_2--;
-//                }
-//                if (current_hash_1<current_hash_2){
-//                    pointer_1--;
-//                }
-//                if (current_hash_1==current_hash_2){
-//                    same_hash_counter++;
-//                    pointer_1--;
-//                    pointer_2--;
-//                }
-//            }
-
-
-//            jaccard_index = (float) same_hash_counter/sketch_length; //todo jaccard estimate = jaccard index???
-//            mash_distance = (jaccard_index==0f)? 1:-1f/parameters.kmerSize * (float) Math.log((2*jaccard_index)/(1+jaccard_index));
-//            genome_size_1 = mashSketch_1.getGenome_size();
-//            genome_size_2 = mashSketch_2.getGenome_size();
-//            pkx = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_1);
-//            pky = 1- (float)Math.pow(1-Math.pow(ALPHABET_SIZE,-parameters.kmerSize),genome_size_2);
-//            r = pkx*pky/(pkx+pky-pkx*pky);
-//            p_value=1;
-//            for (int i =0; i<same_hash_counter;i++){
-//                p_value -= (binom(sketch_length,i)*Math.pow(r,i)*Math.pow((1-r),(sketch_length-i)));
-//            }
-
-//            mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
             System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.dashingSketchesSynch.size()+parameters.cores) + " comparisons left");
             latch.countDown();
         }
@@ -235,7 +203,6 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
                     kmer = sequence.substring(i, i + parameters.kmerSize);
                     reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
                     kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
-//                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
                     try {
                         Murmur3.murmurhash3_x64_128(kmer.getBytes("UTF-8"), 0, parameters.kmerSize, parameters.seed, longPair);
                         hash = longPair.val1;
@@ -246,7 +213,23 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
                     if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
                         registerKey=(int)(hash%(long)registerSize);
                         if (registerKey<0)registerKey=registerKey+registerSize;
-//                        register[registerKey]=countZeros(hash,parameters.prefixSize);
+                        register[registerKey]=Math.max(register[registerKey],countZeros(hash,parameters.prefixSize));
+                    }
+                    else{
+                        bloomFilter.add(kmer);
+                    }
+                }
+            }
+            else if (parameters.hashFunction == 2) { //wang
+                for (int i = 0; i <= sequenceLength - parameters.kmerSize; i++) {
+                    kmer = sequence.substring(i, i + parameters.kmerSize);
+                    reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
+                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
+                    hash = Wang.hash(kmer);
+                    count++;
+                    if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
+                        registerKey=(int)(hash%(long)registerSize);
+                        if (registerKey<0)registerKey=registerKey+registerSize;
                         register[registerKey]=Math.max(register[registerKey],countZeros(hash,parameters.prefixSize));
                     }
                     else{
@@ -267,7 +250,7 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
 }
 
 public class Dashing {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         dashing(args);
     }
 
@@ -276,43 +259,39 @@ public class Dashing {
         InputParameters parameters = new InputParameters();
         parameters.parseInputDashing(args);
         long startTime = System.currentTimeMillis();
-        if (parameters.type.equals("sketch")){
-            WriteReadObject.writeObjectToFile(dashingSketch(parameters),parameters.outputFile.concat(".dsk"));
-        }
-        else if (parameters.type.equals("dist")){
+        if (parameters.type.equals("sketch")) {
+            WriteReadObject.writeObjectToFile(dashingSketch(parameters), parameters.outputFile.concat(".dsk"));
+        } else if (parameters.type.equals("dist")) {
             DashingDistance[] dashingDistances = null;
-            if (parameters.mashSketches !=null){
-                dashingDistances = dashingDist(parameters.dashingSketches,parameters);
+            if (parameters.mashSketches != null) {
+                dashingDistances = dashingDist(parameters.dashingSketches, parameters);
+            } else {
+                dashingDistances = dashingDist(dashingSketch(parameters), parameters);
             }
-            else{
-                dashingDistances = dashingDist(dashingSketch(parameters),parameters);
-            }
-            if (parameters.tableOutput){
-                printTable(tableOutput(dashingDistances,parameters.sequenceFiles));
-            }else {
+            if (parameters.tableOutput) {
+                printTable(tableOutput(dashingDistances, parameters.sequenceFiles));
+            } else {
 
 //                Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath1()));
-//                Arrays.sort(dashingDistances,Comparator.comparing(a -> a.getFilePath2()));
-                System.out.println();
+//                Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath2()));
+//                System.out.println();
 //                WriteReadObject.writeTxtFile(dashingDistances, parameters.outputFile);
                 for (DashingDistance d : dashingDistances) {
 
-//                    System.out.print(d.getSameHashes()+", ");
+
 //                    d.printShort();
                     System.out.println(d.toStringJaccard());
                 }
                 System.out.println();
             }
-            if(parameters.outputPhylip){
-                WriteReadObject.writePhylipFile(tableOutput(dashingDistances,parameters.sequenceFiles),parameters.outputFile);
+            if (parameters.outputPhylip) {
+                WriteReadObject.writePhylipFile(tableOutput(dashingDistances, parameters.sequenceFiles), parameters.outputFile);
+            }
+        } else if (parameters.type.equals("info")) {
+            for (DashingSketch dashingSketch : parameters.dashingSketches) {
+                System.out.println(dashingSketch.toString() + "\n");
             }
         }
-        else if (parameters.type.equals("info")){
-            for (DashingSketch dashingSketch : parameters.dashingSketches){
-                System.out.println(dashingSketch.toString()+"\n");
-            }
-        }
-
 
 
 //        mash_dist(mash_sketch(parameters),parameters)[0].print();
@@ -323,14 +302,13 @@ public class Dashing {
     }
 
     private static DashingDistance[] dashingDist(DashingSketch[] dashingSketches, InputParameters parameters) {
-        parameters.dashingSketches=dashingSketches;
+        parameters.dashingSketches = dashingSketches;
         parameters.dashingSketchesSynch = new SynchronizedList<DashingSketch>(new ArrayList<DashingSketch>(Arrays.asList(dashingSketches)));
-        int threads=dashingSketches.length;
+        int threads = dashingSketches.length;
         ExecutorService pool = Executors.newFixedThreadPool(parameters.cores);
         CountDownLatch latch = new CountDownLatch(threads);
         Future<ArrayList<DashingDistance>>[] results = new Future[parameters.cores];
-        for (int i = 0; i < parameters.cores; i++)
-        {
+        for (int i = 0; i < parameters.cores; i++) {
             DistTask task = new DistTask("Task " + i, latch, parameters);
             System.out.println("A new task has been added : " + task.getName());
             results[i] = pool.submit(task);
@@ -341,11 +319,11 @@ public class Dashing {
             e.printStackTrace();
         }
         pool.shutdown();
-        DashingDistance[] dashingDistances = new DashingDistance[threads*threads];
+        DashingDistance[] dashingDistances = new DashingDistance[threads * threads];
         int pointer = 0;
-        for(Future<ArrayList<DashingDistance>> distance : results){
+        for (Future<ArrayList<DashingDistance>> distance : results) {
             try {
-                for(DashingDistance d : distance.get()){
+                for (DashingDistance d : distance.get()) {
                     dashingDistances[pointer] = d;
                     pointer++;
                 }
@@ -359,13 +337,12 @@ public class Dashing {
     }
 
     private static DashingSketch[] dashingSketch(InputParameters parameters) {
-        int threads=parameters.sequences.size();
+        int threads = parameters.sequences.size();
         ExecutorService pool = Executors.newFixedThreadPool(parameters.cores);
         CountDownLatch latch = new CountDownLatch(threads);
         Future<ArrayList<DashingSketch>>[] results = new Future[parameters.cores];
-        for (int i = 0; i < parameters.cores; i++)
-        {
-            dashing.KmerTask task = new dashing.KmerTask("Task " + i, latch,parameters);
+        for (int i = 0; i < parameters.cores; i++) {
+            dashing.KmerTask task = new dashing.KmerTask("Task " + i, latch, parameters);
             System.out.println("A new task has been added : " + task.getName());
             results[i] = pool.submit(task);
         }
@@ -377,9 +354,9 @@ public class Dashing {
         pool.shutdown();
         DashingSketch[] dashingSketches = new DashingSketch[threads];
         int pointer = 0;
-        for(Future<ArrayList<DashingSketch>> sketch : results){
+        for (Future<ArrayList<DashingSketch>> sketch : results) {
             try {
-                for(DashingSketch s : sketch.get()){
+                for (DashingSketch s : sketch.get()) {
                     dashingSketches[pointer] = s;
                     pointer++;
                 }
@@ -393,9 +370,35 @@ public class Dashing {
     }
 
     private static void printTable(String[][] tableOutput) {
+        for (int i = 0; i < tableOutput.length; i++) {
+            for (int j = 0; j < tableOutput[0].length; j++) {
+                System.out.print(tableOutput[i][j] + "\t");
+            }
+            System.out.println();
+        }
     }
 
     private static String[][] tableOutput(DashingDistance[] dashingDistances, ArrayList<String> sequenceFiles) {
-        return null;
+        String[][] table = new String[sequenceFiles.size() + 1][sequenceFiles.size() + 1];
+        table[0][0] = "Jaccard-Index";
+        for (int i = 1; i < sequenceFiles.size() + 1; i++) {
+            table[i][0] = sequenceFiles.get(i - 1);
+            table[0][i] = sequenceFiles.get(i - 1);
+            table[i][i] = "1";
+        }
+        for (DashingDistance dashingDistance : dashingDistances) {
+            int i, j;
+            for (i = 0; i < sequenceFiles.size(); i++) {
+                if (dashingDistance.getFilePath1().equals(sequenceFiles.get(i))) break;
+            }
+            for (j = 0; j < sequenceFiles.size(); j++) {
+                if (dashingDistance.getFilePath2().equals(sequenceFiles.get(j))) break;
+            }
+            table[i + 1][j + 1] = String.valueOf(dashingDistance.getJaccard_index());
+            table[j + 1][i + 1] = String.valueOf(dashingDistance.getJaccard_index());
+        }
+        return table;
     }
+
+
 }
