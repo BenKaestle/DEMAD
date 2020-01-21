@@ -15,7 +15,6 @@ public class Murmur3_32 implements HashFunction {
         this.seed = seed;
     }
 
-
     @Override
     public long hash(String kmer) {
         return murmurhash3_x86_32(kmer, 0, kmerSize, seed);

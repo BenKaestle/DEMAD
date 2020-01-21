@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="292.0" y="360.0">dashing.Dashing</node>
+    <node x="175.0" y="218.0">utility.BloomFilter</node>
+    <node x="0.0" y="289.0">mash.MashSketch</node>
+    <node x="211.0" y="0.0">hash_functions.HashFunction</node>
+    <node x="307.0" y="289.0">mash.KmerTask</node>
+    <node x="0.0" y="431.0">mash.Mash</node>
+    <node x="0.0" y="360.0">dashing.KmerTask</node>
+    <node x="196.0" y="147.0">dashing.DashingSketch</node>
+    <node x="146.0" y="360.0">mash.DistTask</node>
+    <node x="0.0" y="147.0">dashing.DashingDistance</node>
+    <node x="0.0" y="76.0">hash_functions.JavaHashCode</node>
+    <node x="161.0" y="289.0">dashing.DistTask</node>
+    <node x="343.0" y="218.0">utility.FastaParser</node>
+    <node x="0.0" y="218.0">mash.MashDistance</node>
+    <node x="286.0" y="76.0">hash_functions.Murmur3_64</node>
+    <node x="150.0" y="76.0">hash_functions.Murmur3_32</node>
+    <node x="117.0" y="431.0">Main</node>
+    <node x="422.0" y="76.0">hash_functions.Wang</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="hash_functions.Murmur3_64" target="hash_functions.HashFunction">
+      <point x="0.0" y="-13.0" />
+      <point x="344.0" y="56.0" />
+      <point x="292.25" y="56.0" />
+      <point x="16.25" y="13.0" />
+    </edge>
+    <edge source="hash_functions.Murmur3_32" target="hash_functions.HashFunction">
+      <point x="0.0" y="-13.0" />
+      <point x="208.0" y="56.0" />
+      <point x="259.75" y="56.0" />
+      <point x="-16.25" y="13.0" />
+    </edge>
+    <edge source="hash_functions.JavaHashCode" target="hash_functions.HashFunction">
+      <point x="0.0" y="-13.0" />
+      <point x="65.0" y="46.0" />
+      <point x="227.25" y="46.0" />
+      <point x="-48.75" y="13.0" />
+    </edge>
+    <edge source="hash_functions.Wang" target="hash_functions.HashFunction">
+      <point x="0.0" y="-13.0" />
+      <point x="458.0" y="46.0" />
+      <point x="324.75" y="46.0" />
+      <point x="48.75" y="13.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="788.3571428571429" y="448.5714285714285" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
