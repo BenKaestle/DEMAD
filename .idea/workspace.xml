@@ -7,20 +7,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
-      <change afterPath="$PROJECT_DIR$/main/src/hash_functions/Wang.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/x" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/src/hash_functions/HashFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/src/hash_functions/JavaHashCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_32.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_64.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/Dashing.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/Dashing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/DashingDistance.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/DashingDistance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/DashingSketch.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/DashingSketch.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/DistTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/DistTask.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/KmerTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/KmerTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3$LongPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3$LongPair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Rabin_Karp.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Rabin_Karp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Test_Hash.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Test_Hash.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Wang.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Wang.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/DistTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/DistTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/KmerTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/KmerTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/Mash.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/Mash.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/MashDistance.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/MashDistance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/MashSketch.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/MashSketch.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Testing.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/test/Testing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/FastaParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/FastaParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/InputParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/InputParameters.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/dashing/Dashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/Dashing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/dashing/DashingDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/DashingDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/dashing/DashingSketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/DashingSketch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Test_Hash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Test_Hash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Wang.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Wang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/hash_function.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/phylotree/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/mash/MashDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/MashDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/mash/MashSketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/MashSketch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/test/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/test/Testing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/FastaParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/FastaParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/utility/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/InputParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +50,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CodeIris Favorites" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -47,12 +72,12 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/src/utility" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="profiler.jvm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,7 +105,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Testing">
+  <component name="RunManager" selected="Application.Mash">
     <configuration name="Dashing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dashing.Dashing" />
       <module name="main" />
@@ -113,7 +138,7 @@
     <configuration name="Mash" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mash.Mash" />
       <module name="main" />
-      <option name="PROGRAM_PARAMETERS" value="dist -i main/res " />
+      <option name="PROGRAM_PARAMETERS" value="dist -i main/res -k 16 -s 256 " />
       <option name="VM_PARAMETERS" value="-XX:+UnlockCommercialFeatures" />
       <extension name="coverage">
         <pattern>
@@ -143,6 +168,7 @@
       <option name="MAIN_CLASS_NAME" value="test.Testing" />
       <module name="main" />
       <option name="PROGRAM_PARAMETERS" value="main/x" />
+      <option name="VM_PARAMETERS" value="-XX:+UnlockCommercialFeatures" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="test.*" />
@@ -196,10 +222,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Dashing" />
         <item itemvalue="Application.Testing" />
         <item itemvalue="Application.main" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Dashing" />
         <item itemvalue="Application.ParseRefSeq" />
       </list>
     </recent_temporary>
@@ -226,7 +252,25 @@
       <workItem from="1574952130305" duration="2261000" />
       <workItem from="1575038224628" duration="595000" />
       <workItem from="1575039153910" duration="6010000" />
-      <workItem from="1575124859688" duration="1499000" />
+      <workItem from="1575124859688" duration="2107000" />
+      <workItem from="1575389226212" duration="4055000" />
+      <workItem from="1575468303780" duration="9199000" />
+      <workItem from="1575578487095" duration="9618000" />
+      <workItem from="1575841137753" duration="1104000" />
+      <workItem from="1576269353103" duration="1269000" />
+      <workItem from="1576746913057" duration="657000" />
+      <workItem from="1576783017716" duration="592000" />
+      <workItem from="1576859966768" duration="3150000" />
+      <workItem from="1577139235264" duration="615000" />
+      <workItem from="1577354731317" duration="594000" />
+      <workItem from="1578067768615" duration="649000" />
+      <workItem from="1578142267613" duration="601000" />
+      <workItem from="1578349015610" duration="776000" />
+      <workItem from="1579166962256" duration="735000" />
+      <workItem from="1579465575840" duration="171000" />
+      <workItem from="1579557365732" duration="7498000" />
+      <workItem from="1579628918884" duration="279000" />
+      <workItem from="1579629246797" duration="1222000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>

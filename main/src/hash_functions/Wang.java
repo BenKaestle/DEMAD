@@ -1,8 +1,8 @@
 package hash_functions;
 
-public class Wang {
+public class Wang implements HashFunction{
 
-    public static long timeConsumingHash(String x){
+    public long timeConsumingHash(String x){
         long value = 0;
         for(int i=0;i<x.length();i++){
             switch (x.charAt(x.length()-i-1)) {
@@ -23,12 +23,14 @@ public class Wang {
         }
         return hash64shift(value);
     }
-    public static long hash(String x){
-        return hash64shift(x.hashCode());
+
+
+    public long hash(String kmer){
+        return hash64shift(kmer.hashCode());
     }
 
 
-    public static long hash64shift(long key)
+    public  long hash64shift(long key)
     {
         key = (~key) + (key << 21); // key = (key << 21) - key - 1;
         key = key ^ (key >>> 24);

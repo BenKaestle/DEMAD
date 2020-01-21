@@ -1,6 +1,6 @@
 package mash;
 
-import hash_functions.Murmur3;
+import hash_functions.*;
 import utility.*;
 
 import java.io.File;
@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.concurrent.*;
 
 
@@ -16,8 +17,6 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
 
     private String name;
     private MashSketch mashSketch_1;
-    private MashSketch mashSketch_2;
-    private MashSketch[] mashSketches;
     private long current_hash_1;
     private long current_hash_2;
     private int sketch_length;
@@ -28,7 +27,7 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
     private InputParameters parameters;
     private CountDownLatch latch;
     private float r, pkx, pky;
-    private final int ALPHABET_SIZE = 4;
+    private int alphabetSize = 4;
     private int genome_size_1, genome_size_2;
 
     public DistTask(String name, CountDownLatch latch, InputParameters parameters) {
@@ -45,6 +44,31 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
     public ArrayList<MashDistance> call() {
         mashDistances = new ArrayList<>();
         int pointer_1, pointer_2;
+        if (parameters.alphabet=="AA"){
+            switch (parameters.reduceAlphabet){
+                case -1:
+                    alphabetSize =20;
+                    break;
+                case 0:
+                    alphabetSize =15;
+                    break;
+                case 1:
+                    alphabetSize =10;
+                    break;
+                case 2:
+                    alphabetSize =8;
+                    break;
+                case 3:
+                    alphabetSize =4;
+                    break;
+                case 4:
+                    alphabetSize =2;
+                    break;
+                default:
+                    alphabetSize = 20;
+                    break;
+            }
+        }
         while (!parameters.mashSketchesSynch.isEmpty()) {
             mashSketch_1 = parameters.mashSketchesSynch.get();
             if (mashSketch_1 == null) break;
@@ -68,23 +92,27 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
                         pointer_2--;
                     }
                 }
-                jaccard_index = (float) same_hash_counter / sketch_length; //todo jaccard estimate = jaccard index???
+                jaccard_index = (float) same_hash_counter / sketch_length;
                 mash_distance = (jaccard_index == 0f) ? 1 : -1f / parameters.kmerSize * (float) Math.log((2 * jaccard_index) / (1 + jaccard_index));
                 genome_size_1 = mashSketch_1.getGenome_size();
                 genome_size_2 = mashSketch_2.getGenome_size();
-                pkx = 1 - (float) Math.pow(1 - Math.pow(ALPHABET_SIZE, -parameters.kmerSize), genome_size_1);
-                pky = 1 - (float) Math.pow(1 - Math.pow(ALPHABET_SIZE, -parameters.kmerSize), genome_size_2);
+                pkx = 1 - (float) Math.pow(1 - Math.pow(alphabetSize, -parameters.kmerSize), genome_size_1);
+                pky = 1 - (float) Math.pow(1 - Math.pow(alphabetSize, -parameters.kmerSize), genome_size_2);
                 r = pkx * pky / (pkx + pky - pkx * pky);
                 p_value = 1;
                 for (int i = 0; i < same_hash_counter; i++) {
                     p_value -= (binom(sketch_length, i) * Math.pow(r, i) * Math.pow((1 - r), (sketch_length - i)));
                 }
 
-
-//                mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), 0, 0, 0, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
+                if (mash_distance<=0) mash_distance=0;
+                if (p_value<0) p_value=0;
                 mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
             }
-            System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.mashSketchesSynch.size()+parameters.cores) + " comparisons left");
+            if(parameters.sequences.size()>0) {
+                System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.mashSketchesSynch.size() + parameters.cores) + " comparisons left");
+            } else{
+                System.out.println("comparison finished by thread " + this.name + "\tless than " + parameters.cores + " comparisons left");
+            }
             latch.countDown();
         }
         return mashDistances;
@@ -107,11 +135,11 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
     private MashSketch mashSketch;
     private ArrayList<MashSketch> mashSketches;
     private BloomFilter bloomFilter;
-    private SketchSet sketchSet;
     private String kmer;
     private String reverseKmer;
     private InputParameters parameters;
     private int sequenceLength;
+    private HashFunction hashFunction;
 
     public KmerTask(String name, CountDownLatch latch, InputParameters parameters) {
         this.name = name;
@@ -122,35 +150,6 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
     public String getName() {
         return name;
     }
-
-    //todo is it faster to just reverse the whole sequence and take the smaller one?
-    public static String canonical_kmer(String kmer) {
-        StringBuilder reverse = new StringBuilder();
-        for (int i = kmer.length() - 1; i >= 0; i--) {
-            switch (kmer.charAt(i)) {
-                case 'A':
-                    reverse.append("T");
-                    break;
-                case 'T':
-                    reverse.append("A");
-
-                    break;
-                case 'G':
-                    reverse.append("C");
-
-                    break;
-                case 'C':
-                    reverse.append("G");
-
-                    break;
-                default:
-                    reverse.append("N");
-                    break;
-            }
-        }
-        return kmer.compareTo(reverse.toString()) > 0 ? reverse.toString() : kmer;
-    }
-
     /**
      * for a given genome size and the desired probability prob of observing a random k-mer calculate the optimal k value
      *
@@ -160,6 +159,37 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
      */
     public static int optimalK(long genome_size, float prob) {
         return (int) Math.ceil(Math.log(genome_size * (1 - prob) / prob) / Math.log(4));
+    }
+
+    public static void addHash(long hash, long[] sketchHashes, InputParameters parameters, BloomFilter bloomFilter, String kmer) {
+        if (hash < sketchHashes[0]) {
+            if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
+                boolean contains = false;
+                for (int j = 0; j < parameters.sketchSize; j++) {
+                    if (sketchHashes[j] == hash) {
+                        contains = true;
+                        break;
+                    }
+                }
+                if (!contains) {
+                    boolean last = false;
+                    for (int j = 1; j < parameters.sketchSize; j++) {
+                        if (hash < sketchHashes[j]) {
+                            sketchHashes[j - 1] = sketchHashes[j];
+                        } else {
+                            sketchHashes[j - 1] = hash;
+                            last = true;
+                            break;
+                        }
+                    }
+                    if (!last) {
+                        sketchHashes[parameters.sketchSize - 1] = hash;
+                    }
+                }
+            } else {
+                bloomFilter.add(kmer);
+            }
+        }
     }
 
     @Override
@@ -172,7 +202,7 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
             String path = parameters.sequences.get();
             if (path == null) break;
             try {
-                sequenceInfo = FastaParser.parseFasta(new File(path));
+                sequenceInfo = FastaParser.parseFasta(new File(path),parameters.alphabet,parameters.reduceAlphabet);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -189,104 +219,46 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
             long hash = 0;
             if (parameters.bloomFilter)
                 bloomFilter = new BloomFilter(parameters.bloomFilterSize, parameters.bloomFilterHashes);
-            sketchSet = new SketchSet(5);
             sequenceLength = sequence.length();
+
             if (parameters.hashFunction == 1) { //murmur3 x64_128
-                for (int i = 0; i <= sequence.length() - parameters.kmerSize; i++) {
-                    kmer = sequence.substring(i, i + parameters.kmerSize);
-                    reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
-                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
-//                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
-                    try {
-                        Murmur3.murmurhash3_x64_128(kmer.getBytes("UTF-8"), 0, parameters.kmerSize, parameters.seed, longPair);
-                        hash = longPair.val1;
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    count++;
-
-                    if (hash < sketchHashes[0]) {
-                        if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
-                            boolean contains = false;
-                            for (int j = 0; j < parameters.sketchSize; j++) {
-                                if (sketchHashes[j] == hash) {
-                                    contains = true;
-                                    break;
-                                }
-                            }
-                            if (!contains) {
-                                boolean last = false;
-                                for (int j = 1; j < parameters.sketchSize; j++) {
-                                    if (hash < sketchHashes[j]) {
-                                        sketchHashes[j - 1] = sketchHashes[j];
-                                    } else if (hash == sketchHashes[j]) {
-//                                        System.out.println("duplicate");
-//                                        System.out.println(hash);
-                                    } else {
-                                        sketchHashes[j - 1] = hash;
-                                        last = true;
-                                        break;
-                                    }
-                                }
-                                if (!last) {
-                                    sketchHashes[parameters.sketchSize - 1] = hash;
-                                }
-                            }
-                        } else {
-                            bloomFilter.add(kmer);
-                        }
-                    }
-                }
+                hashFunction = new Murmur3_64(parameters.kmerSize, parameters.seed);
             } else if (parameters.hashFunction == 0) { //murmur3 x86_32
-                for (int i = 0; i <= sequence.length() - parameters.kmerSize; i++) {
-                    kmer = sequence.substring(i, i + parameters.kmerSize);
-                    reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
-                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
-//                    kmer = canonical_kmer(sequence.substring(i, i + parameters.kmerSize));
-                    hash = Murmur3.murmurhash3_x86_32(kmer, 0, parameters.kmerSize, parameters.seed);
-
-                    count++;
-
-                    if (hash < sketchHashes[0]) {
-                        if (parameters.bloomFilter && bloomFilter.contains(kmer) || !parameters.bloomFilter) {
-                            boolean contains = false;
-                            for (int j = 0; j < parameters.sketchSize; j++) {
-                                if (sketchHashes[j] == hash) {
-                                    contains = true;
-                                    break;
-                                }
-                            }
-                            if (!contains) {
-                                boolean last = false;
-                                for (int j = 1; j < parameters.sketchSize; j++) {
-                                    if (hash < sketchHashes[j]) {
-                                        sketchHashes[j - 1] = sketchHashes[j];
-                                    } else if (hash == sketchHashes[j]) {
-//                                        System.out.println("duplicate");
-//                                        System.out.println(hash);
-                                    } else {
-                                        sketchHashes[j - 1] = hash;
-                                        last = true;
-                                        break;
-                                    }
-                                }
-                                if (!last) {
-                                    sketchHashes[parameters.sketchSize - 1] = hash;
-                                }
-                            }
-                        } else {
-                            bloomFilter.add(kmer);
-                        }
-                    }
-                }
+                hashFunction = new Murmur3_32(parameters.kmerSize, parameters.seed);
+            } else if (parameters.hashFunction == 2) { //wang hash
+                hashFunction = new Wang();
+            } else if (parameters.hashFunction == 3) { //java hash_code
+                hashFunction = new JavaHashCode();
             } else {
                 throw new Exception("no such Hash-Function");
             }
-            System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t" + (parameters.sequences.size()+parameters.cores) + " genomes left");
+            for (int i = 0; i <= sequence.length() - parameters.kmerSize; i++) {
+                kmer = createKmer(i,sequence,reverseSequence);
+                hash = hashFunction.hash(kmer);
+                count++;
+                addHash(hash, sketchHashes, parameters, bloomFilter, kmer);
+            }
+
+
+
+
+            if(parameters.sequences.size()>0) {
+                System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t" + (parameters.cores + parameters.sequences.size()) + " genomes left");
+            } else{
+                System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t less than " + parameters.cores + " genomes left");
+            }
             latch.countDown();
             mashSketches.add(mashSketch);
         }
         return mashSketches;
+    }
+
+    private String createKmer(int i, String sequence, String reverseSequence) {
+        kmer = sequence.substring(i, i + parameters.kmerSize);
+        if (reverseSequence.length()==0) return kmer;
+        reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
+        kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
+        return kmer;
     }
 }
 
@@ -299,12 +271,12 @@ public class Mash {
     public static void mash(String[] args) {
 
         InputParameters parameters = new InputParameters();
-        parameters.parseInputMash(args);
+        parameters.parseInput(args,true);
         long startTime = System.currentTimeMillis();
         if (parameters.type.equals("sketch")) {
             WriteReadObject.writeObjectToFile(mash_sketch(parameters), parameters.outputFile.concat(".msk"));
         } else if (parameters.type.equals("dist")) {
-            MashDistance[] mashDistances = null;
+            MashDistance[] mashDistances;
             if (parameters.mashSketches != null) {
                 mashDistances = mash_dist(parameters.mashSketches, parameters);
             } else {
@@ -313,14 +285,11 @@ public class Mash {
             if (parameters.tableOutput) {
                 printTable(tableOutput(mashDistances, parameters.sequenceFiles));
             } else {
-//                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath1()));
-//                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath2()));
-                System.out.println();
+                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath1()));
+                Arrays.sort(mashDistances, Comparator.comparing(a -> a.getFilePath2()));
                 WriteReadObject.writeTxtFile(mashDistances, parameters.outputFile);
                 for (MashDistance d : mashDistances) {
-
-//                    System.out.print(d.getSameHashes()+", ");
-                    d.printShort();
+                    System.out.println(d.toString());
                 }
                 System.out.println();
             }
@@ -332,9 +301,6 @@ public class Mash {
                 System.out.println(mashSketch.toString() + "\n");
             }
         }
-
-
-//        mash_dist(mash_sketch(parameters),parameters)[0].print();
         long endTime = System.currentTimeMillis();
         long duration = (endTime - startTime);
         System.out.println(duration);
@@ -366,8 +332,8 @@ public class Mash {
             for (j = 0; j < sequenceFiles.size(); j++) {
                 if (mashDistance.getFilePath2().equals(sequenceFiles.get(j))) break;
             }
-            table[i + 1][j + 1] = String.valueOf(mashDistance.getMash_distance());
-            table[j + 1][i + 1] = String.valueOf(mashDistance.getMash_distance());
+            table[i + 1][j + 1] = String.format(Locale.ROOT,"%f", mashDistance.getMash_distance());
+            table[j + 1][i + 1] = String.format(Locale.ROOT,"%f", mashDistance.getMash_distance());
         }
         return table;
     }
@@ -433,7 +399,7 @@ public class Mash {
             e.printStackTrace();
         }
         pool.shutdown();
-        MashDistance[] mashDistances = new MashDistance[(int)Math.pow(threads,2)];
+        MashDistance[] mashDistances = new MashDistance[(int) Math.pow(threads, 2)];
         int pointer = 0;
         for (Future<ArrayList<MashDistance>> distance : results) {
             try {

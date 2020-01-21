@@ -1,5 +1,7 @@
 package mash;
 
+import java.util.Locale;
+
 public class MashDistance {
     private String header_1;
     private String header_2;
@@ -72,10 +74,14 @@ public class MashDistance {
         System.out.println("p_Value: "+ this.p_value);
     }
     public void printShort(){
-        System.out.println(this.filePath1 + "\t" + this.filePath2 + "\t" + this.mash_distance + "\t" + this.p_value + "\t" + this.sameHashes+"/");
+        System.out.print(this.filePath1 + "\t" + this.filePath2+"\t");
+        System.out.printf("%f", this.mash_distance);
+        System.out.print("\t");
+        System.out.printf("%f", this.p_value);
+        System.out.print("\t"+sameHashes+"\n");
     }
 
     public String toString(){
-        return this.filePath1 + "\t" + this.filePath2 + "\t" + this.mash_distance + "\t" + this.p_value + "\t" + this.sameHashes;
+        return this.filePath1 + "\t" + this.filePath2 + "\t" + String.format(Locale.ROOT,"%f", this.mash_distance) + "\t" + String.format(Locale.ROOT,"%f", this.p_value) + "\t" + this.sameHashes;
     }
 }

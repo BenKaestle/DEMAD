@@ -51,6 +51,8 @@ public class MashSketch implements Serializable {
         String hashF ="";
         if(hashFunction==0) hashF = "murmur3_x86_32";
         if(hashFunction==1) hashF = "murmur3_x64_128(first half)";
+        if(hashFunction==2) hashF = "Wang-hash";
+        if(hashFunction==3) hashF = "hash_code";
         return  "filename:         "+ filename+"\n"+
                 "header:           "+ header+"\n"+
                 "hash function:    "+ hashF+"\n"+

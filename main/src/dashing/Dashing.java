@@ -1,8 +1,6 @@
 package dashing;
 
-import hash_functions.Murmur3;
-import hash_functions.Wang;
-import mash.MashSketch;
+import hash_functions.*;
 import utility.*;
 
 import java.io.File;
@@ -10,95 +8,78 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.concurrent.*;
 
-final class DistTask implements Callable<ArrayList<DashingDistance>>
-{
+final class DistTask implements Callable<ArrayList<DashingDistance>> {
     private String name;
     private DashingSketch dashingSketch_1;
     private float harmonicMean_1, harmonicMean_2, harmonicMean_c;
     private int[] combinedRegister;
-    private int sketch_length;
-    private int same_hash_counter;
     private ArrayList<DashingDistance> dashingDistances;
-    private float jaccard_index, mash_distance;
-    private double p_value;
+    private float jaccard_index;
     private InputParameters parameters;
     private CountDownLatch latch;
-    private float r, pkx, pky;
-    private final int ALPHABET_SIZE = 4;
     private int registerSize;
-    final private float ALPHA_M = (float)(1/(2*Math.log(2)));
+    final private float ALPHA_M = (float) (1 / (2 * Math.log(2)));
 
     public DistTask(String name, CountDownLatch latch, InputParameters parameters) {
         this.name = name;
         this.latch = latch;
         this.parameters = parameters;
-        this.combinedRegister = new int[(int)Math.pow(2,parameters.prefixSize)];
+        this.combinedRegister = new int[(int) Math.pow(2, parameters.prefixSize)];
     }
 
     public String getName() {
         return name;
     }
 
-    public float harmonicMean(int[] register){
-        registerSize=register.length;
-        float denominator=0;
-        for(int i=0;i<registerSize;i++){
-            denominator+=Math.pow(2,-(register[i]+1));
+    public float harmonicMean(int[] register) {
+        registerSize = register.length;
+        float denominator = 0;
+        for (int i = 0; i < registerSize; i++) {
+            denominator += Math.pow(2, -(register[i] + 1));
         }
-        return ALPHA_M*registerSize*registerSize/denominator;
+        return ALPHA_M * registerSize * registerSize / denominator;
     }
 
     @Override
-    public ArrayList<DashingDistance> call(){
+    public ArrayList<DashingDistance> call() {
         dashingDistances = new ArrayList<>();
         while (!parameters.dashingSketchesSynch.isEmpty()) {
             dashingSketch_1 = parameters.dashingSketchesSynch.get();
-            if (dashingSketch_1 ==null) break;
-            for(DashingSketch dashingSketch_2:parameters.dashingSketches){
-                if (dashingSketch_1.hasNoHarmonicMean()){
+            if (dashingSketch_1 == null) break;
+            for (DashingSketch dashingSketch_2 : parameters.dashingSketches) {
+                if (dashingSketch_1.hasNoHarmonicMean()) {
                     dashingSketch_1.setHarmonicMean(harmonicMean(dashingSketch_1.getRegister()));
                     dashingSketch_1.setNoHarmonicMean(false);
                 }
-                if (dashingSketch_2.hasNoHarmonicMean()){
+                if (dashingSketch_2.hasNoHarmonicMean()) {
                     dashingSketch_2.setHarmonicMean(harmonicMean(dashingSketch_2.getRegister()));
                     dashingSketch_2.setNoHarmonicMean(false);
                 }
-                harmonicMean_1=dashingSketch_1.getHarmonicMean();
-                harmonicMean_2=dashingSketch_2.getHarmonicMean();
-                for (int i =0;i<dashingSketch_1.getRegister().length;i++){
-                    combinedRegister[i]=Math.max(dashingSketch_1.getRegister()[i],dashingSketch_2.getRegister()[i]);
+                harmonicMean_1 = dashingSketch_1.getHarmonicMean();
+                harmonicMean_2 = dashingSketch_2.getHarmonicMean();
+                for (int i = 0; i < dashingSketch_1.getRegister().length; i++) {
+                    combinedRegister[i] = Math.max(dashingSketch_1.getRegister()[i], dashingSketch_2.getRegister()[i]);
                 }
                 harmonicMean_c = harmonicMean(combinedRegister);
-                jaccard_index=(harmonicMean_1+harmonicMean_2-harmonicMean_c)/harmonicMean_c;
-                if (jaccard_index<0)jaccard_index=0;
-//                System.out.println(jaccard_index + " "+harmonicMean_1 + " "+harmonicMean_2 + " "+harmonicMean_c + " ");
-
-
-
-
-
-                dashingDistances.add(new DashingDistance(dashingSketch_1.getHeader(), dashingSketch_2.getHeader(), jaccard_index, 0, 0, dashingSketch_1.getFilename(), dashingSketch_2.getFilename(), 0));
+                jaccard_index = (harmonicMean_1 + harmonicMean_2 - harmonicMean_c) / harmonicMean_c;
+                if (jaccard_index < 0) jaccard_index = 0;
+                jaccard_index=((int)(jaccard_index*1000000))/1000000f;
+                dashingDistances.add(new DashingDistance(dashingSketch_1.getHeader(), dashingSketch_2.getHeader(), jaccard_index, dashingSketch_1.getFilename(), dashingSketch_2.getFilename()));
             }
-            System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.dashingSketchesSynch.size()+parameters.cores) + " comparisons left");
+            if(parameters.dashingSketchesSynch.size()>0) {
+                System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.dashingSketchesSynch.size() + parameters.cores) + " comparisons left");
+            } else{
+                System.out.println("comparison finished by thread " + this.name + "\tless than " + parameters.cores + " comparisons left");
+            }
             latch.countDown();
         }
         return dashingDistances;
     }
-    public static double binom(int n, int k) {
-        double res = 1;
-        while (k > 0) {
-            res = res * ((double) n / (double) k);
-            k--;
-            n--;
-        }
-        return res;
-    }
 }
-
 
 
 final class KmerTask implements Callable<ArrayList<DashingSketch>> {
@@ -107,7 +88,6 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
     private DashingSketch dashingSketch;
     private ArrayList<DashingSketch> dashingSketches;
     private BloomFilter bloomFilter;
-    private SketchSet sketchSet;
     private String kmer;
     private String reverseKmer;
     private InputParameters parameters;
@@ -116,6 +96,7 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
     private String reverseSequence;
     private int registerSize;
     private int registerKey;
+    private HashFunction hashFunction;
 
 
     public KmerTask(String name, CountDownLatch latch, InputParameters parameters) {
@@ -135,8 +116,7 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
         return (int) Math.ceil(Math.log(genome_size * (1 - prob) / prob) / Math.log(4));
     }
 
-    public static int countZeros(long val, int prefixSize)
-    {
+    public static int countZeros(long val, int prefixSize) {
         long y;
         int n = 64;
         y = val >> 32;
@@ -166,8 +146,18 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
         }
         y = val >> 1;
         if (y != 0)
-            return Math.min(n - 2,64-prefixSize);
-        return Math.min(n - (int)val, 64-prefixSize);
+            return Math.min(n - 2, 64 - prefixSize);
+        return Math.min(n - (int) val, 64 - prefixSize);
+    }
+
+    public void addHash(long hash, int[] register) {
+        if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
+            registerKey = (int) (hash % (long) registerSize);
+            if (registerKey < 0) registerKey = registerKey + registerSize;
+            register[registerKey] = Math.max(register[registerKey], countZeros(hash, parameters.prefixSize));
+        } else {
+            bloomFilter.add(kmer);
+        }
     }
 
     @Override
@@ -181,7 +171,7 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
             String path = parameters.sequences.get();
             if (path == null) break;
             try {
-                sequenceInfo = FastaParser.parseFasta(new File(path));
+                sequenceInfo = FastaParser.parseFasta(new File(path), parameters.alphabet,parameters.reduceAlphabet);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -196,52 +186,43 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
             }
             dashingSketch = new DashingSketch(register, sequenceInfo[0], path, parameters.kmerSize, parameters.hashFunction, sequenceLength, parameters.seed);
             long hash = 0;
-            if (parameters.bloomFilter) bloomFilter = new BloomFilter(parameters.bloomFilterSize, parameters.bloomFilterHashes);
-            sketchSet = new SketchSet(5);
+            if (parameters.bloomFilter)
+                bloomFilter = new BloomFilter(parameters.bloomFilterSize, parameters.bloomFilterHashes);
             if (parameters.hashFunction == 1) { //murmur3 x64_128
-                for (int i = 0; i <= sequenceLength - parameters.kmerSize; i++) {
-                    kmer = sequence.substring(i, i + parameters.kmerSize);
-                    reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
-                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
-                    try {
-                        Murmur3.murmurhash3_x64_128(kmer.getBytes("UTF-8"), 0, parameters.kmerSize, parameters.seed, longPair);
-                        hash = longPair.val1;
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    count++;
-                    if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
-                        registerKey=(int)(hash%(long)registerSize);
-                        if (registerKey<0)registerKey=registerKey+registerSize;
-                        register[registerKey]=Math.max(register[registerKey],countZeros(hash,parameters.prefixSize));
-                    }
-                    else{
-                        bloomFilter.add(kmer);
-                    }
-                }
+                hashFunction = new Murmur3_64(parameters.kmerSize, parameters.seed);
+            } else if (parameters.hashFunction == 0) { //murmur3 x86_32
+                hashFunction = new Murmur3_32(parameters.kmerSize, parameters.seed);
+            } else if (parameters.hashFunction == 2) { //wang hash
+                hashFunction = new Wang();
+            } else if (parameters.hashFunction == 3) { //java hash_code
+                hashFunction = new JavaHashCode();
+            } else {
+                throw new Exception("no such Hash-Function");
             }
-            else if (parameters.hashFunction == 2) { //wang
-                for (int i = 0; i <= sequenceLength - parameters.kmerSize; i++) {
-                    kmer = sequence.substring(i, i + parameters.kmerSize);
-                    reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
-                    kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
-                    hash = Wang.hash(kmer);
-                    count++;
-                    if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
-                        registerKey=(int)(hash%(long)registerSize);
-                        if (registerKey<0)registerKey=registerKey+registerSize;
-                        register[registerKey]=Math.max(register[registerKey],countZeros(hash,parameters.prefixSize));
-                    }
-                    else{
-                        bloomFilter.add(kmer);
-                    }
-                }
+            for (int i = 0; i <= sequenceLength - parameters.kmerSize; i++) {
+                kmer = createKmer(i,sequence,reverseSequence);
+                hash = hashFunction.hash(kmer);
+                count++;
+                addHash(hash, register);
             }
-            System.out.println("kmers hashed: " + count + " by thread " + this.name +"\t"+(parameters.cores+parameters.sequences.size())+" genomes left");
+
+            if(parameters.sequences.size()>0) {
+                System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t" + (parameters.cores + parameters.sequences.size()) + " genomes left");
+            } else{
+                System.out.println("kmers hashed: " + count + " by thread " + this.name + "\t less than " + parameters.cores + " genomes left");
+            }
             latch.countDown();
             dashingSketches.add(dashingSketch);
         }
         return dashingSketches;
+    }
+
+    private String createKmer(int i, String sequence, String reverseSequence) {
+        kmer = sequence.substring(i, i + parameters.kmerSize);
+        if (reverseSequence.length()==0) return kmer;
+        reverseKmer = reverseSequence.substring(sequenceLength - i - parameters.kmerSize, sequenceLength - i);
+        kmer = kmer.compareTo(reverseKmer) > 0 ? reverseKmer : kmer;
+        return kmer;
     }
 
     public String getName() {
@@ -257,7 +238,7 @@ public class Dashing {
     public static void dashing(String[] args) {
 
         InputParameters parameters = new InputParameters();
-        parameters.parseInputDashing(args);
+        parameters.parseInput(args,false);
         long startTime = System.currentTimeMillis();
         if (parameters.type.equals("sketch")) {
             WriteReadObject.writeObjectToFile(dashingSketch(parameters), parameters.outputFile.concat(".dsk"));
@@ -272,15 +253,10 @@ public class Dashing {
                 printTable(tableOutput(dashingDistances, parameters.sequenceFiles));
             } else {
 
-//                Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath1()));
-//                Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath2()));
-//                System.out.println();
-//                WriteReadObject.writeTxtFile(dashingDistances, parameters.outputFile);
+                Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath1()));
+                Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath2()));
                 for (DashingDistance d : dashingDistances) {
-
-
-//                    d.printShort();
-                    System.out.println(d.toStringJaccard());
+                    System.out.println(d.toString());
                 }
                 System.out.println();
             }
@@ -292,9 +268,6 @@ public class Dashing {
                 System.out.println(dashingSketch.toString() + "\n");
             }
         }
-
-
-//        mash_dist(mash_sketch(parameters),parameters)[0].print();
         long endTime = System.currentTimeMillis();
         long duration = (endTime - startTime);
         System.out.println(duration);
@@ -394,8 +367,8 @@ public class Dashing {
             for (j = 0; j < sequenceFiles.size(); j++) {
                 if (dashingDistance.getFilePath2().equals(sequenceFiles.get(j))) break;
             }
-            table[i + 1][j + 1] = String.valueOf(dashingDistance.getJaccard_index());
-            table[j + 1][i + 1] = String.valueOf(dashingDistance.getJaccard_index());
+            table[i + 1][j + 1] = String.format(Locale.ROOT,"%f", dashingDistance.getJaccard_index());
+            table[j + 1][i + 1] = String.format(Locale.ROOT,"%f", dashingDistance.getJaccard_index());
         }
         return table;
     }

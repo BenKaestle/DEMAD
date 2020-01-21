@@ -3,10 +3,7 @@ package test;
 import utility.WriteReadObject;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
+import java.util.*;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
@@ -35,7 +32,53 @@ public class Testing {
 
     public static void testing(String[] args) {
 
-        writeTSVtable(readPhylip("dashing_original.phylip"));
+        Map<String, String[]> reduce = new HashMap<String, String[]>() {{
+            put("L", new String[]{"L","L","L","L","L"});
+            put("V", new String[]{"L","L","L","L","L"});
+            put("I", new String[]{"L","L","L","L","L"});
+            put("M", new String[]{"L","L","L","L","L"});
+            put("C", new String[]{"C","C","L","L","L"});
+            put("A", new String[]{"A","A","A","A","L"});
+            put("G", new String[]{"G","G","A","A","L"});
+            put("S", new String[]{"S","S","S","A","L"});
+            put("T", new String[]{"T","S","S","A","L"});
+            put("P", new String[]{"P","P","P","A","L"});
+            put("F", new String[]{"F","F","F","F","L"});
+            put("Y", new String[]{"F","F","F","F","L"});
+            put("W", new String[]{"W","F","F","F","L"});
+            put("E", new String[]{"E","E","E","E","E"});
+            put("D", new String[]{"D","E","E","E","E"});
+            put("N", new String[]{"N","E","E","E","E"});
+            put("Q", new String[]{"Q","E","E","E","E"});
+            put("K", new String[]{"K","K","K","E","E"});
+            put("R", new String[]{"K","K","K","E","E"});
+            put("H", new String[]{"H","H","H","E","E"});
+        }};
+
+        String x = "AGFWEDNRHHAIMAGFWEDNRHHAIMAGFWEDNRHHAIMAGFWEDNRHHAIMAGFWEDNRHHAIMAGFWEDNRHHAIMAGFWEDNRHHAIMAGFWEDNRHHAIM";
+        long startTime = System.nanoTime();
+        String y="";
+        for (Character c : x.toCharArray()){
+            y+= reduce.get(c.toString())[4];
+        }
+        System.out.println(y);
+
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println(duration);
+
+
+
+
+        startTime = System.nanoTime();
+        for (Map.Entry<String, String[]> entry : reduce.entrySet()) {
+            x = x.replace(entry.getKey(), entry.getValue()[4]);
+        }
+        System.out.println(x);
+
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+        System.out.println(duration);
 
 
     }
