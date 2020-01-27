@@ -114,7 +114,7 @@ public class InputParameters {
         Option seed = new Option("S", "seed", true, "seed used for hash function (default = 42)");
         options.addOption(seed);
 
-        Option bloomFilter = new Option("b", "bloomFilter", true, "a bloom filter is used for sketching (optional add estimated genome size (default 1mbp)");
+        Option bloomFilter = new Option("b", "bloomFilter", true, "a bloom filter is used for sketching (optional add estimated genome size)");
         options.addOption(bloomFilter);
 
         Option bloomFilterParameters = new Option("bp", "bloomFilterParameters", true, "size (log2(#bits)) and number of hash functions of the Used BloomFilter");
@@ -294,7 +294,7 @@ public class InputParameters {
                 this.bloomFilterHashes = Integer.parseInt(cmd.getOptionValues("bloomFilterParameters")[1]);
 
             } else {
-                calculateOptimalBloomFilter(bloomThreshold, this.bloomFilterSize);
+                calculateOptimalBloomFilter(bloomThreshold, this.bloomFilterGenomeSize);
             }
             if (this.bloomFilterHashes > 8) {
                 System.out.println("WARNING: maximum number of bloom filter hashes is 8 -> your value got reduced to 8");

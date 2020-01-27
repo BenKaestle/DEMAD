@@ -1,5 +1,6 @@
 package utility;
 
+import dashing.DashingDistance;
 import mash.MashDistance;
 
 import java.io.*;
@@ -164,6 +165,22 @@ public class WriteReadObject {
                 fileWriter.write(d.toString()+"\n");
             }
             fileWriter.close();
+            System.out.println("output file: "+out+".txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void writeTxtFile(DashingDistance[] distances, String out) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(out+".txt");
+            for (DashingDistance d : distances){
+                fileWriter.write(d.toString()+"\n");
+            }
+            fileWriter.close();
+            System.out.println("output file: "+out+".txt");
         } catch (IOException e) {
             e.printStackTrace();
         }

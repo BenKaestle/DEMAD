@@ -19,6 +19,7 @@ final class DistTask implements Callable<ArrayList<DashingDistance>> {
     private int[] combinedRegister;
     private ArrayList<DashingDistance> dashingDistances;
     private float jaccard_index;
+    private float mash_distance;
     private InputParameters parameters;
     private CountDownLatch latch;
     private int registerSize;
@@ -67,8 +68,8 @@ final class DistTask implements Callable<ArrayList<DashingDistance>> {
                 harmonicMean_c = harmonicMean(combinedRegister);
                 jaccard_index = (harmonicMean_1 + harmonicMean_2 - harmonicMean_c) / harmonicMean_c;
                 if (jaccard_index < 0) jaccard_index = 0;
-                jaccard_index=((int)(jaccard_index*1000000))/1000000f;
-                dashingDistances.add(new DashingDistance(dashingSketch_1.getHeader(), dashingSketch_2.getHeader(), jaccard_index, dashingSketch_1.getFilename(), dashingSketch_2.getFilename()));
+                mash_distance = (jaccard_index == 0f) ? 1 : -1f / parameters.kmerSize * (float) Math.log((2 * jaccard_index) / (1 + jaccard_index));
+                dashingDistances.add(new DashingDistance(dashingSketch_1.getHeader(), dashingSketch_2.getHeader(), jaccard_index, dashingSketch_1.getFilename(), dashingSketch_2.getFilename(),mash_distance));
             }
             if(parameters.dashingSketchesSynch.size()>0) {
                 System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.dashingSketchesSynch.size() + parameters.cores) + " comparisons left");
@@ -255,6 +256,7 @@ public class Dashing {
 
                 Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath1()));
                 Arrays.sort(dashingDistances, Comparator.comparing(a -> a.getFilePath2()));
+                WriteReadObject.writeTxtFile(dashingDistances, parameters.outputFile);
                 for (DashingDistance d : dashingDistances) {
                     System.out.println(d.toString());
                 }
@@ -353,11 +355,11 @@ public class Dashing {
 
     private static String[][] tableOutput(DashingDistance[] dashingDistances, ArrayList<String> sequenceFiles) {
         String[][] table = new String[sequenceFiles.size() + 1][sequenceFiles.size() + 1];
-        table[0][0] = "Jaccard-Index";
+        table[0][0] = "Mash-Distance";
         for (int i = 1; i < sequenceFiles.size() + 1; i++) {
             table[i][0] = sequenceFiles.get(i - 1);
             table[0][i] = sequenceFiles.get(i - 1);
-            table[i][i] = "1";
+            table[i][i] = "0";
         }
         for (DashingDistance dashingDistance : dashingDistances) {
             int i, j;
@@ -367,8 +369,8 @@ public class Dashing {
             for (j = 0; j < sequenceFiles.size(); j++) {
                 if (dashingDistance.getFilePath2().equals(sequenceFiles.get(j))) break;
             }
-            table[i + 1][j + 1] = String.format(Locale.ROOT,"%f", dashingDistance.getJaccard_index());
-            table[j + 1][i + 1] = String.format(Locale.ROOT,"%f", dashingDistance.getJaccard_index());
+            table[i + 1][j + 1] = String.format(Locale.ROOT,"%f", dashingDistance.getMash_distance());
+            table[j + 1][i + 1] = String.format(Locale.ROOT,"%f", dashingDistance.getMash_distance());
         }
         return table;
     }

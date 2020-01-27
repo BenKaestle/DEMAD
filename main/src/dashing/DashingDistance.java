@@ -8,13 +8,15 @@ public class DashingDistance {
     private float jaccard_index;
     private String filePath1;
     private String filePath2;
+    private float mash_distance;
 
-    public DashingDistance(String header_1, String header_2, float jaccard_index, String filePath1, String filePath2) {
+    public DashingDistance(String header_1, String header_2, float jaccard_index, String filePath1, String filePath2, float mash_distance) {
         this.header_1 = header_1;
         this.header_2 = header_2;
         this.jaccard_index = jaccard_index;
         this.filePath1 = filePath1;
         this.filePath2 = filePath2;
+        this.mash_distance = mash_distance;
     }
 
     public DashingDistance(DashingDistance dashingDistance){
@@ -23,6 +25,7 @@ public class DashingDistance {
         this.jaccard_index = dashingDistance.jaccard_index;
         this.filePath1 = dashingDistance.filePath2;
         this.filePath2 = dashingDistance.filePath1;
+        this.mash_distance = dashingDistance.mash_distance;
     }
 
 
@@ -46,6 +49,10 @@ public class DashingDistance {
         return jaccard_index;
     }
 
+    public float getMash_distance() {
+        return mash_distance;
+    }
+
     public void print(){
         System.out.println("header1: "+ this.header_1);
         System.out.println("header2: "+ this.header_2);
@@ -53,7 +60,7 @@ public class DashingDistance {
     }
 
     public String toString(){
-        return this.filePath1 + "\t" + this.filePath2 + "\t" + String.format(Locale.ROOT,"%f", this.jaccard_index);
+        return this.filePath1 + "\t" + this.filePath2 + "\t" + String.format(Locale.ROOT,"%f", this.jaccard_index) + "\t" + String.format(Locale.ROOT,"%f", this.mash_distance);
     }
 
     public void printShort(){
