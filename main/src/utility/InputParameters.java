@@ -7,6 +7,29 @@ import org.apache.commons.cli.*;
 import java.io.File;
 import java.util.ArrayList;
 
+/*
+ *  InputParameters.java Copyright (C) 2020 Algorithms in Bioinformatics, University of Tuebingen
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/**
+ *
+ * Benjamin Kaestle, 3.2020
+ */
+
 public class InputParameters {
     public SynchronizedList<String> sequences;
     public SynchronizedList<MashSketch> mashSketchesSynch;
@@ -33,7 +56,11 @@ public class InputParameters {
     private float bloomThreshold;
     private int bloomFilterGenomeSize;
 
-
+    /**
+     * parses all input parameters, needs information if mash or dashing was chosen
+     * @param args
+     * @param mash
+     */
     public void parseInput(String[] args, boolean mash) {
         if (args.length == 0) {
             System.out.println("Choose one of: sketch, dist, info");
@@ -355,11 +382,19 @@ public class InputParameters {
         this.outputFile = cmd.getOptionValue("output", "test");
     }
 
+    /**
+     * returns the perfect hash function for mash give the wanted kmer size
+     */
     public void calculateHashFunction() {
         this.hashFunction = (int) this.kmerSize / 16;
         System.out.println("estimated hash function: " + this.hashFunction);
     }
 
+    /**
+     * given a max prob for fals positives and a expected number of items, perfect parameters for a bloom filter are calculated
+     * @param p
+     * @param numOfItems
+     */
     public void calculateOptimalBloomFilter(float p, int numOfItems) {
         bloomFilterSize = (int) Math.ceil((numOfItems * Math.log(p)) / Math.log(1 / Math.pow(2, Math.log(2))));
         bloomFilterHashes = (int) Math.round((this.bloomFilterSize / (float) numOfItems) * Math.log(2));
@@ -370,6 +405,11 @@ public class InputParameters {
         System.out.println("  estimated number of hash functions: " + this.bloomFilterHashes);
     }
 
+    /**
+     * for a expected number of items and the bloom filter parameters a p-value gets computed
+     * @param numOfItems
+     * @return
+     */
     public float calculatePvalueBloomFilter(int numOfItems) {
         return (float) Math.pow(1 - Math.exp(-this.bloomFilterHashes / (Math.pow(2, this.bloomFilterSize) / numOfItems)), this.bloomFilterHashes);
     }

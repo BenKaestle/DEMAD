@@ -6,35 +6,36 @@ import mash.MashDistance;
 import java.io.*;
 import java.util.ArrayList;
 
+/*
+ *  WriteReadObject.java Copyright (C) 2020 Algorithms in Bioinformatics, University of Tuebingen
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/**
+ *
+ * Benjamin Kaestle, 3.2020
+ */
+
 public class WriteReadObject {
 
-    public static int[] readJaccardIndex(String filepath){
-        BufferedReader reader;
-        int[] result = null;
-        try {
-            reader = new BufferedReader(new FileReader(filepath));
-            String line = reader.readLine();
-            int size = 0;
-            while (line != null) {
-                size++;
-                line = reader.readLine();
-            }
-            result = new int[size];
-            reader = new BufferedReader(new FileReader(filepath));
-            line = reader.readLine();
-            int i =0;
-            while (line != null) {
-                result[i] = Integer.parseInt(line.split("\\s+|\t")[line.split("\\s+|\t").length - 1].split("/")[0]);
-                i++;
-                line = reader.readLine();
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
+    /**
+     * writes a .phylip file for a distance matrix tableContent at a certain filepath
+     * @param tableContent
+     * @param filepath
+     */
     public static void writePhylipFile(String[][] tableContent, String filepath) {
         FileWriter fileWriter = null;
         String content = String.valueOf(tableContent.length - 1);
@@ -74,31 +75,12 @@ public class WriteReadObject {
 
     }
 
-    public static String[][] readTSVtable(String table) {
-        int columns = 0;
-        int rows = 0;
-        for (String row : table.split("\n")) {
-            if (rows == 0) {
-                for (String cell : row.split("\\s+|\t")) {
-                    columns++;
-                }
-            }
-            rows++;
-        }
-        String[][] result = new String[rows][columns];
-        columns = 0;
-        rows = 0;
-        for (String row : table.split("\n")) {
-            columns=0;
-            for (String cell : row.split("\\s+|\t")) {
-                result[rows][columns] = cell;
-                columns++;
-            }
-            rows++;
-        }
-        return result;
-    }
 
+    /**
+     * writes any seriazable object to a filepath
+     * @param serObj
+     * @param filepath
+     */
     public static void writeObjectToFile(Object serObj, String filepath) {
         try {
             FileOutputStream fileOut = new FileOutputStream(filepath);
@@ -112,6 +94,11 @@ public class WriteReadObject {
         }
     }
 
+    /**
+     * reads any written object from filepath
+     * @param filepath
+     * @return
+     */
     public static Object readObjectFromFile(String filepath) {
         try {
             FileInputStream fin = new FileInputStream(filepath);
@@ -125,38 +112,11 @@ public class WriteReadObject {
         return null;
     }
 
-    public static ArrayList<String> readTxt(String filepath){
-        BufferedReader reader;
-        ArrayList<String> result = new ArrayList<>();
-        try {
-            reader = new BufferedReader(new FileReader(filepath));
-            String line = reader.readLine();
-            while (line != null) {
-                result.add(line);
-                line = reader.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    public static void writeTxt (String filepath, ArrayList<String> data){
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(filepath+".txt");
-            for (String d : data){
-                fileWriter.write(d+"\n");
-            }
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
+    /**
+     * writes a list of distances to a out filepath
+     * @param distances
+     * @param out
+     */
     public static void writeTxtFile(MashDistance[] distances, String out) {
         FileWriter fileWriter = null;
         try {
@@ -172,6 +132,11 @@ public class WriteReadObject {
 
     }
 
+    /**
+     * writes a list of distances to a out filepath
+     * @param distances
+     * @param out
+     */
     public static void writeTxtFile(DashingDistance[] distances, String out) {
         FileWriter fileWriter = null;
         try {

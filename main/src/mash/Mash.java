@@ -12,6 +12,28 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.concurrent.*;
 
+/*
+ *  Mash.java Copyright (C) 2020 Algorithms in Bioinformatics, University of Tuebingen
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/**
+ *
+ * Benjamin Kaestle, 3.2020
+ */
 
 final class DistTask implements Callable<ArrayList<MashDistance>> {
 
@@ -40,6 +62,12 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
         return name;
     }
 
+    /**
+     * callable method for mash distance tasks:
+     * generates a list of MashDistance objects, as long as the Synchronized list containing MashSketch elements is
+     * not empty. This way only a set number of Dist tasks are generated and reused
+     * @return
+     */
     @Override
     public ArrayList<MashDistance> call() {
         mashDistances = new ArrayList<>();
@@ -118,6 +146,12 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
         return mashDistances;
     }
 
+    /**
+     * binomial function for n binom k
+     * @param n
+     * @param k
+     * @return
+     */
     public static double binom(int n, int k) {
         double res = 1;
         while (k > 0) {
@@ -161,6 +195,14 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
         return (int) Math.ceil(Math.log(genome_size * (1 - prob) / prob) / Math.log(4));
     }
 
+    /**
+     * adds a hash value into the sketch of hashes if all conditions apply. additionally a bloom filter can be used
+     * @param hash
+     * @param sketchHashes
+     * @param parameters
+     * @param bloomFilter
+     * @param kmer
+     */
     public static void addHash(long hash, long[] sketchHashes, InputParameters parameters, BloomFilter bloomFilter, String kmer) {
         if (hash < sketchHashes[0]) {
             if ((parameters.bloomFilter && bloomFilter.contains(kmer)) || !parameters.bloomFilter) {
@@ -191,7 +233,12 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
             }
         }
     }
-
+    /**
+     * callable method for mash kmer tasks:
+     * generates a list of MashSketch objects, as long as the Synchronized list containing input fasta filepaths is
+     * not empty. This way only a set number of kmer tasks are generated and reused
+     * @return
+     */
     @Override
     public ArrayList<MashSketch> call() throws Exception {
         mashSketches = new ArrayList<>();
@@ -253,6 +300,14 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
         return mashSketches;
     }
 
+    /**
+     * for a given sliding window position i in a sequence with the reverse complement reverseSequence, the
+     * lexicographically smaller one gets returned
+     * @param i
+     * @param sequence
+     * @param reverseSequence
+     * @return
+     */
     private String createKmer(int i, String sequence, String reverseSequence) {
         kmer = sequence.substring(i, i + parameters.kmerSize);
         if (reverseSequence.length()==0) return kmer;
@@ -264,6 +319,10 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
 
 
 public class Mash {
+    /**
+     * main function of mash. parses inputs and performs all calculations and outputs
+     * @param args
+     */
     public static void mash(String[] args) {
 
         InputParameters parameters = new InputParameters();
@@ -298,6 +357,10 @@ public class Mash {
         }
     }
 
+    /**
+     * prints for a 2d array strings the corresponding table into the command line
+     * @param strings
+     */
     private static void printTable(String[][] strings) {
         for (int i = 0; i < strings.length; i++) {
             for (int j = 0; j < strings[0].length; j++) {
@@ -307,6 +370,13 @@ public class Mash {
         }
     }
 
+    /**
+     * for all calculated MashDistances and the corresponding sequence file names a distance matrix gets generated and
+     * returned
+     * @param mashDistances
+     * @param sequenceFiles
+     * @return
+     */
     private static String[][] tableOutput(MashDistance[] mashDistances, ArrayList<String> sequenceFiles) {
         String[][] table = new String[sequenceFiles.size() + 1][sequenceFiles.size() + 1];
         table[0][0] = "Mash-Distance";
@@ -329,13 +399,13 @@ public class Mash {
         return table;
     }
 
+    /**
+     * for the parsed input parameters several threads are created and organized
+     * the resulting MashSketch elements are sorted into one list of Sketches and returned
+     * @param parameters
+     * @return
+     */
     private static MashSketch[] mash_sketch(InputParameters parameters) {
-
-
-        return mash_sketch_in_parallel(parameters);
-    }
-
-    private static MashSketch[] mash_sketch_in_parallel(InputParameters parameters) {
         int threads = parameters.sequences.size();
         ExecutorService pool = Executors.newFixedThreadPool(parameters.cores);
         CountDownLatch latch = new CountDownLatch(threads);
@@ -368,13 +438,16 @@ public class Mash {
         return mashSketches;
     }
 
-    private static MashDistance[] mash_dist(MashSketch[] mashSketches, InputParameters parameters) {
+    /**
+     * for input parameters and an already created list of MashSketch objects all pairwise distances get computed. Several threads produce
+     * lists of distances that get sorted and combined in the end.
+     * @param mashSketches
+     * @param parameters
+     * @return
+     */
+    private static MashDistance[] mash_dist(MashSketch[] mashSketches,InputParameters parameters) {
         parameters.mashSketches = mashSketches;
         parameters.mashSketchesSynch = new SynchronizedList<MashSketch>(new ArrayList<MashSketch>(Arrays.asList(mashSketches)));
-        return mash_dist_in_parallel(parameters);
-    }
-
-    private static MashDistance[] mash_dist_in_parallel(InputParameters parameters) {
         int threads = parameters.mashSketchesSynch.size();
         ExecutorService pool = Executors.newFixedThreadPool(parameters.cores);
         CountDownLatch latch = new CountDownLatch(threads);

@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/Dashing.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/Dashing.class" afterDir="false" />
@@ -14,33 +15,28 @@
       <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64$LongPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64$LongPair.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Rabin_Karp.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Rabin_Karp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Test_Hash.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/basicDiagram.uml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/detailedDiagram.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/DistTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/DistTask.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/Mash.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/Mash.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/CompleteGenome.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/ParseRefSeq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Test_Values.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Testing$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Testing.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/ParseRefseq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/SketchSet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/diagram.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/FastaParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/FastaParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/WriteReadObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/WriteReadObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/dashing/Dashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/Dashing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/dashing/DashingDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/DashingDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/dashing/DashingSketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/DashingSketch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/HashFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/HashFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/JavaHashCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/JavaHashCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_32.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_32.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_64.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_64.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Rabin_Karp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Rabin_Karp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Test_Hash.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Wang.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Wang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/CompleteGenome.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/test/Test_Values.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/test/Testing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/ParseRefseq.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/SketchSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/mash/MashDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/MashDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/mash/MashSketch.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/MashSketch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/BloomFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/BloomFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/FastaParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/FastaParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/InputParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/InputParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/SynchronizedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/SynchronizedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/WriteReadObject.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +82,7 @@
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\src2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\index-files" />
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\src2" />
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\res" />
       <recent name="C:\Users\Ben\Documents\GitHub\k-mer_based_distance_algo\main\resources" />
@@ -275,7 +272,7 @@
       <workItem from="1579875905807" duration="4743000" />
       <workItem from="1580153800039" duration="558000" />
       <workItem from="1580417096009" duration="715000" />
-      <workItem from="1582131682760" duration="12938000" />
+      <workItem from="1582131682760" duration="15922000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>

@@ -1,6 +1,28 @@
 package dashing;
 
 import java.util.Locale;
+/*
+ *  DashingDistance.java Copyright (C) 2020 Algorithms in Bioinformatics, University of Tuebingen
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/**
+ *
+ * Benjamin Kaestle, 3.2020
+ */
 
 public class DashingDistance {
     private String header_1;
@@ -53,19 +75,12 @@ public class DashingDistance {
         return mash_distance;
     }
 
-    public void print(){
-        System.out.println("header1: "+ this.header_1);
-        System.out.println("header2: "+ this.header_2);
-        System.out.println("jaccard: "+ this.jaccard_index);
-    }
-
+    /**
+     * to string function for command line printing
+     * @return
+     */
     public String toString(){
         return this.filePath1 + "\t" + this.filePath2 + "\t" + String.format(Locale.ROOT,"%f", this.jaccard_index) + "\t" + String.format(Locale.ROOT,"%f", this.mash_distance);
     }
 
-    public void printShort(){
-        System.out.print(this.filePath1 + "\t" + this.filePath2+"\t");
-        System.out.printf("%f", this.jaccard_index);
-        System.out.print("\n");
-    }
 }
