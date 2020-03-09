@@ -1,3 +1,0 @@
-G1	main\res\genome1.fna
-G2	main\res\genome2.fna
-G3	main\res\genome3.fna

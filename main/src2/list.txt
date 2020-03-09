@@ -1,8 +1,0 @@
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000005825.2_ASM582v2_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006665.1_ASM666v1_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006685.1_ASM668v1_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006725.1_ASM672v1_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006745.1_ASM674v1_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006765.1_ASM676v1_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006785.2_ASM678v2_genomic
-<query> data/k-mer_based_distance_algo/main/src2/GCF_000006805.1_ASM680v1_genomic

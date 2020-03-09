@@ -1,9 +1,0 @@
-main\res\genome1.fna	main\res\genome1.fna	0.000000	0.000002	256
-main\res\genome2.fna	main\res\genome1.fna	0.025342	0.000006	128
-main\res\genome3.fna	main\res\genome1.fna	0.000122	0.000002	255
-main\res\genome1.fna	main\res\genome2.fna	0.025342	0.000006	128
-main\res\genome2.fna	main\res\genome2.fna	0.000000	0.000000	256
-main\res\genome3.fna	main\res\genome2.fna	0.025669	0.000000	127
-main\res\genome1.fna	main\res\genome3.fna	0.000122	0.000002	255
-main\res\genome2.fna	main\res\genome3.fna	0.025669	0.000000	127
-main\res\genome3.fna	main\res\genome3.fna	0.000000	0.000002	256

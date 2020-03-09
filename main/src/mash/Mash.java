@@ -108,7 +108,7 @@ final class DistTask implements Callable<ArrayList<MashDistance>> {
                 if (p_value<0) p_value=0;
                 mashDistances.add(new MashDistance(mashSketch_1.getHeader(), mashSketch_2.getHeader(), jaccard_index, p_value, mash_distance, mashSketch_1.getFilename(), mashSketch_2.getFilename(), same_hash_counter));
             }
-            if(parameters.sequences.size()>0) {
+            if(parameters.mashSketchesSynch.size()>0) {
                 System.out.println("comparison finished by thread " + this.name + "\t" + (parameters.mashSketchesSynch.size() + parameters.cores) + " comparisons left");
             } else{
                 System.out.println("comparison finished by thread " + this.name + "\tless than " + parameters.cores + " comparisons left");

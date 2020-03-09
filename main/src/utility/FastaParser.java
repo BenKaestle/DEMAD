@@ -77,7 +77,7 @@ public class FastaParser {
                 }
                 st = st.trim();
                 fasta.append(st);
-                if (!consitsOfAlphabet(st, alphabet)) {
+                if (!consitsOfAlphabet(st.trim(), alphabet)) {
                     nonAlphabetical = true;
                 }
                 if (alphabet.equals("DNA")) {
@@ -128,6 +128,7 @@ public class FastaParser {
      */
     public static boolean consitsOfAlphabet(String s, String alphabet) {
         if (alphabet == null) return true;
+        if (s.equals("")) return true;
         switch (alphabet) {
             case "DNA":
                 return ((!s.equals(""))
