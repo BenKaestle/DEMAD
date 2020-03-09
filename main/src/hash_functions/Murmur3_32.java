@@ -4,6 +4,11 @@ package hash_functions;
  * @author Ben on 21.01.2020
  * @project k-mer_based_distance_algo
  */
+/**
+ *  The MurmurHash3 algorithm was created by Austin Appleby and placed in the public domain.
+ *  This java port was authored by Yonik Seeley and also placed into the public domain.
+ *  The author hereby disclaims copyright to this source code.
+ **/
 public class Murmur3_32 implements HashFunction {
 
 
@@ -45,27 +50,6 @@ public class Murmur3_32 implements HashFunction {
             if (code < 0x80) {
                 k2 = code;
                 bits = 8;
-
-                /***
-                 // optimized ascii implementation (currently slower!!! code size?)
-                 if (shift == 24) {
-                 k1 = k1 | (code << 24);
-                 k1 *= c1;
-                 k1 = (k1 << 15) | (k1 >>> 17);  // ROTL32(k1,15);
-                 k1 *= c2;
-                 h1 ^= k1;
-                 h1 = (h1 << 13) | (h1 >>> 19);  // ROTL32(h1,13);
-                 h1 = h1*5+0xe6546b64;
-                 shift = 0;
-                 nBytes += 4;
-                 k1 = 0;
-                 } else {
-                 k1 |= code << shift;
-                 shift += 8;
-                 }
-                 continue;
-                 ***/
-
             }
             else if (code < 0x800) {
                 k2 = (0xC0 | (code >> 6))
@@ -93,8 +77,6 @@ public class Murmur3_32 implements HashFunction {
 
             k1 |= k2 << shift;
 
-            // int used_bits = 32 - shift;  // how many bits of k2 were used in k1.
-            // int unused_bits = bits - used_bits; //  (bits-(32-shift)) == bits+shift-32  == bits-newshift
 
             shift += bits;
             if (shift >= 32) {

@@ -232,15 +232,10 @@ final class KmerTask implements Callable<ArrayList<DashingSketch>> {
 }
 
 public class Dashing {
-    public static void main(String[] args) {
-        dashing(args);
-    }
-
     public static void dashing(String[] args) {
 
         InputParameters parameters = new InputParameters();
         parameters.parseInput(args,false);
-        long startTime = System.currentTimeMillis();
         if (parameters.type.equals("sketch")) {
             WriteReadObject.writeObjectToFile(dashingSketch(parameters), parameters.outputFile.concat(".dsk"));
         } else if (parameters.type.equals("dist")) {
@@ -270,9 +265,6 @@ public class Dashing {
                 System.out.println(dashingSketch.toString() + "\n");
             }
         }
-        long endTime = System.currentTimeMillis();
-        long duration = (endTime - startTime);
-        System.out.println(duration);
 
     }
 

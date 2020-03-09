@@ -6,6 +6,11 @@ import java.io.UnsupportedEncodingException;
  * @author Ben on 21.01.2020
  * @project k-mer_based_distance_algo
  */
+/**
+ *  The MurmurHash3 algorithm was created by Austin Appleby and placed in the public domain.
+ *  This java port was authored by Yonik Seeley and also placed into the public domain.
+ *  The author hereby disclaims copyright to this source code.
+ **/
 public class Murmur3_64 implements HashFunction {
 
 
@@ -63,8 +68,6 @@ public class Murmur3_64 implements HashFunction {
     /** Returns the MurmurHash3_x64_128 hash, placing the result in "out". */
     @SuppressWarnings("fallthrough")
     public static void murmurhash3_x64_128(byte[] key, int offset, int len, int seed, LongPair out) {
-        // The original algorithm does have a 32 bit unsigned seed.
-        // We have to mask to match the behavior of the unsigned types and prevent sign extension.
         long h1 = seed & 0x00000000FFFFFFFFL;
         long h2 = seed & 0x00000000FFFFFFFFL;
 

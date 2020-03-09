@@ -7,241 +7,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b76938f5-1275-4aaa-94c5-cba104b070cc" name="Default" comment="more stuff">
-      <change afterPath="$PROJECT_DIR$/main/corona/AY278489.2 SARS coronavirus GD01.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/AY390556.1 SARS coronavirus GZ02.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/AY391777.1 Human coronavirus OC43.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/AY485277.1 SARS coronavirus Sino1-11.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/AY508724.1 SARS coronavirus NS-1.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065505.1 Bat coronavirus HKU4-1.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065506.1 Bat coronavirus HKU4-2.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065507.1 Bat coronavirus HKU4-3.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065508.1 Bat coronavirus HKU4-4.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065509.1 Bat coronavirus HKU5-1.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065510.1 Bat coronavirus HKU5-2.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065511.1 Bat coronavirus HKU5-3.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065512.1 Bat coronavirus HKU5-5.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065513.1 Bat coronavirus HKU9-1.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065514.1 Bat coronavirus HKU9-2.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065515.1 Bat coronavirus HKU9-3.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/EF065516.1 Bat coronavirus HKU9-4.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/FJ647223.1 Murine coronavirus MHV-1.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/GU190215.1 Bat coronavirus BM48-31BGR2008.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/JX993987.1 Bat coronavirus RpShaanxi2011.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KC881005.1 Bat SARS-like coronavirus RsSHC014.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KC881006.1 Bat SARS-like coronavirus Rs3367.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KF636752.1 Bat Hp-betacoronavirusZhejiang2013.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KM349744.1 Betacoronavirus HKU24 strain HKU24-R05010I.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KU762337.1 Rousettus bat coronavirus isolate GCCDC1 346.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KU762338.1 Rousettus bat coronavirus isolate GCCDC1 356.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY352407.1 Severe acute respiratory syndrome-related coronavirus strain BtKY72.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417142.1 Bat SARS-like coronavirus isolate As6526.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417143.1 Bat SARS-like coronavirus isolate Rs4081.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417144.1 Bat SARS-like coronavirus isolate Rs4084.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417145.1 Bat SARS-like coronavirus isolate Rf4092.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417146.1 Bat SARS-like coronavirus isolate Rs4231.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417147.1 Bat SARS-like coronavirus isolate Rs4237.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417148.1 Bat SARS-like coronavirus isolate Rs4247.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417149.1 Bat SARS-like coronavirus isolate Rs4255.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417150.1 Bat SARS-like coronavirus isolate Rs4874.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/KY417151.1 Bat SARS-like coronavirus isolate Rs7327.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/LC521925.1 Severe acute respiratory syndrome coronavirus 2 2019-nCoVJapanAII-0042020 RNA.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/LR757995.1 Wuhan seafood market pneumonia virus genome assembly.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/LR757996.1 Wuhan seafood market pneumonia virus genome assembly.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/LR757997.1 Wuhan seafood market pneumonia virus genome assembly.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/LR757998.1 Wuhan seafood market pneumonia virus genome assembly.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MG772933.1 Bat SARS-like coronavirus isolate bat-SL-CoVZC45.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MG772934.1 Bat SARS-like coronavirus isolate bat-SL-CoVZXC21.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK167038.1 Human coronavirus HKU1 strain SC2521.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211369.1 Coronavirus BtSk-AlphaCoVGX2018A.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211370.1 Coronavirus BtSk-AlphaCoVGX2018B.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211371.1 Coronavirus BtSk-AlphaCoVGX2018C.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211372.1 Coronavirus BtSk-AlphaCoVGX2018D.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211373.1 Coronavirus BtRs-AlphaCoVYN2018.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211374.1 Coronavirus BtRl-BetaCoVSC2018.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211375.1 Coronavirus BtRs-BetaCoVYN2018A.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211376.1 Coronavirus BtRs-BetaCoVYN2018B.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211377.1 Coronavirus BtRs-BetaCoVYN2018C.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211378.1 Coronavirus BtRs-BetaCoVYN2018D.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MK211379.1 Coronavirus BtRt-BetaCoVGX2018.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT019529.1 Severe acute respiratory syndrome coronavirus 2 isolate BetaCoVWuhanIPBCAMS-WH-012019.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT019530.1 Severe acute respiratory syndrome coronavirus 2 isolate BetaCoVWuhanIPBCAMS-WH-022019.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT020880.1 Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoVUSA-WA1-A122020.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT020881.1 Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoVUSA-WA1-F62020.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT027062.1 Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoVUSA-CA32020.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT027063.1 Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoVUSA-CA42020.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT027064.1 Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoVUSA-CA52020.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/MT039890.1 Severe acute respiratory syndrome coronavirus 2 isolate SNU01.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/corona/NC_045512.2 Wuhan seafood market pneumonia virus isolate Wuhan-Hu-1.fasta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/testGenomes/51.fna" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comparison.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comparison1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comparison2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashing_original.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashing_original_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/BB11007_BALIBASE.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/01.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/01.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/02.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/02.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/03.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/03.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/04.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/04.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/05.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/05.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/06.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/06.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/07.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/07.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/08.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/08.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/09.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/09.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/10.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/10.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/11.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/11.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/12.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/12.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/13.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/13.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/14.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/14.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/15.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/15.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/16.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/16.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/17.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/17.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/18.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/18.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/19.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/19.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/20.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/20.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/21.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/21.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/22.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/22.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/23.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/23.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/24.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/24.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/25.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/25.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/26.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/26.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/27.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/27.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/28.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/28.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/29.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/29.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/30.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/30.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/31.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/31.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/32.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/32.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/33.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/33.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/34.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/34.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/35.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/35.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/36.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/36.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/37.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/37.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/38.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/38.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/39.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/39.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/40.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/40.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/41.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/41.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/42.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/42.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/43.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/43.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/44.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/44.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/45.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/45.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/46.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/46.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/47.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/47.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/48.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/48.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/49.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/49.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/50.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/50.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000006805.1_ASM680v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000006805.1_ASM680v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000009185.1_ASM918v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000009185.1_ASM918v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000011085.1_ASM1108v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000011085.1_ASM1108v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000023945.1_ASM2394v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000023945.1_ASM2394v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000023965.1_ASM2396v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000023965.1_ASM2396v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000025685.1_ASM2568v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000025685.1_ASM2568v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000026045.1_ASM2604v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000026045.1_ASM2604v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000069025.1_ASM6902v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000069025.1_ASM6902v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000172995.2_ASM17299v2_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000172995.2_ASM17299v2_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000196895.1_ASM19689v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000196895.1_ASM19689v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000223905.1_ASM22390v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000223905.1_ASM22390v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000230955.2_ASM23095v3_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000230955.2_ASM23095v3_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000237865.1_ASM23786v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000237865.1_ASM23786v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000306765.2_ASM30676v2_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000306765.2_ASM30676v2_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000470655.1_HATI1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000470655.1_HATI1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000504565.1_ASM50456v2_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000504565.1_ASM50456v2_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000591055.1_ASM59105v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000591055.1_ASM59105v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_000827835.1_ASM82783v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_000827835.1_ASM82783v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001011115.1_ASM101111v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001011115.1_ASM101111v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001190965.1_ASM119096v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001190965.1_ASM119096v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001280385.1_ASM128038v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001280385.1_ASM128038v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001280405.1_ASM128040v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001280405.1_ASM128040v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001305655.1_ASM130565v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001305655.1_ASM130565v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001307215.1_ASM130721v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001307215.1_ASM130721v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001308065.1_ASM130806v1_genomic.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001308065.1_ASM130806v1_genomic.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001308065.1_ASM130806v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001308065.1_ASM130806v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001308145.2_ASM130814v2_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001308145.2_ASM130814v2_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001308145.2_ASM130814v2_genomic.fna/GCF_001308145.2_ASM130814v2_genomic.fna" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001308145.2_ASM130814v2_genomic.fna/GCF_001308145.2_ASM130814v2_genomic.fna" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001308165.1_ASM130816v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001308165.1_ASM130816v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001420935.1_ASM142093v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001420935.1_ASM142093v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001420955.1_ASM142095v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001420955.1_ASM142095v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001442495.1_ASM144249v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001442495.1_ASM144249v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001767315.1_ASM176731v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001767315.1_ASM176731v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001886955.1_ASM188695v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001886955.1_ASM188695v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_001989615.1_ASM198961v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_001989615.1_ASM198961v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_002844335.1_ASM284433v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_002844335.1_ASM284433v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_003058365.1_ASM305836v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_003058365.1_ASM305836v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_003342675.1_ASM334267v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_003342675.1_ASM334267v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_003342695.1_ASM334269v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_003342695.1_ASM334269v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_003856835.1_ASM385683v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_003856835.1_ASM385683v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_004087835.1_ASM408783v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_004087835.1_ASM408783v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_004799605.1_ASM479960v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_004799605.1_ASM479960v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_004799665.1_ASM479966v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_004799665.1_ASM479966v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_004799685.1_ASM479968v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_004799685.1_ASM479968v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_004803735.1_ASM480373v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_004803735.1_ASM480373v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_005155585.1_ASM515558v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_005155585.1_ASM515558v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_005310945.1_ASM531094v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_005310945.1_ASM531094v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_005406325.1_ASM540632v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_005406325.1_ASM540632v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_005954745.1_ASM595474v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_005954745.1_ASM595474v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_007833275.1_ASM783327v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_007833275.1_ASM783327v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_009217585.1_ASM921758v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_009217585.1_ASM921758v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/genomes/orginal/GCF_900005775.1_ASM90000577v1_genomic.fna.gz" beforeDir="false" afterPath="$PROJECT_DIR$/main/testGenomes/orginal/GCF_900005775.1_ASM90000577v1_genomic.fna.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/jaccard_index/15_10000.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/jaccard_index/18_1000.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/jaccard_index/18_1000_bloom.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/jaccard_index/21_1000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/out/production/main/dashing/Dashing.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/dashing/Dashing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/DistTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/DistTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/FastaParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/FastaParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/WriteReadObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/utility/WriteReadObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/phylo_dist3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/res/assembly_summary_refseq.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/res/genome1.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/res/genome2.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/res/genome3.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/res/out.ske" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/genome1.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/genome2.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/genome3.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sequence.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sequence2.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sequence3.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/test.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/basicDiagram.uml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/detailedDiagram.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_32.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_32.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64$LongPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64$LongPair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Murmur3_64.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Rabin_Karp.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/hash_functions/Rabin_Karp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/Test_Hash.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/basicDiagram.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/hash_functions/detailedDiagram.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/mash/Mash.class" beforeDir="false" afterPath="$PROJECT_DIR$/main/out/production/main/mash/Mash.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/CompleteGenome.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/phylotree/ParseRefSeq.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Test_Values.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Testing$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/test/Testing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/ParseRefseq.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/SketchSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/out/production/main/utility/diagram.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/dashing/Dashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/dashing/Dashing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_32.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_32.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_64.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Murmur3_64.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Rabin_Karp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/hash_functions/Rabin_Karp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/hash_functions/Test_Hash.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main/src/mash/Mash.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/mash/Mash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/FastaParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/src/utility/FastaParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src/utility/diagram.uml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000005825.2_ASM582v2_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006665.1_ASM666v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006685.1_ASM668v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006725.1_ASM672v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006745.1_ASM674v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006765.1_ASM676v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006785.2_ASM678v2_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/GCF_000006805.1_ASM680v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/src2/list.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/srcTest/GCF_000005825.2_ASM582v2_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/srcTest/GCF_000006805.1_ASM680v1_genomic.fna" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/x" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/original_mash_result.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/original_mash_result_15_10000.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/original_mash_result_15_10000_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/original_mash_result_18_1000.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/original_mash_result_18_1000_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/original_mash_result_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out.ske" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out.ske.ske" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outout.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outout_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/table.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/table2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test3.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testestest.phylip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testestest.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testestest_phylip_help.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing.msk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/CompleteGenome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/phylotree/ParseRefSeq.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/test/Test_Values.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/test/Testing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/ParseRefseq.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/src/utility/SketchSet.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -476,7 +275,7 @@
       <workItem from="1579875905807" duration="4743000" />
       <workItem from="1580153800039" duration="558000" />
       <workItem from="1580417096009" duration="715000" />
-      <workItem from="1582131682760" duration="11757000" />
+      <workItem from="1582131682760" duration="12938000" />
     </task>
     <task id="LOCAL-00001" summary="more stuff">
       <created>1573583262933</created>

@@ -264,15 +264,10 @@ final class KmerTask implements Callable<ArrayList<MashSketch>> {
 
 
 public class Mash {
-    public static void main(String[] args) {
-        mash(args);
-    }
-
     public static void mash(String[] args) {
 
         InputParameters parameters = new InputParameters();
         parameters.parseInput(args,true);
-        long startTime = System.currentTimeMillis();
         if (parameters.type.equals("sketch")) {
             WriteReadObject.writeObjectToFile(mash_sketch(parameters), parameters.outputFile.concat(".msk"));
         } else if (parameters.type.equals("dist")) {
@@ -301,10 +296,6 @@ public class Mash {
                 System.out.println(mashSketch.toString() + "\n");
             }
         }
-        long endTime = System.currentTimeMillis();
-        long duration = (endTime - startTime);
-        System.out.println(duration);
-
     }
 
     private static void printTable(String[][] strings) {

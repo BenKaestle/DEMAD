@@ -2,16 +2,6 @@ package hash_functions;
 
 public class Rabin_Karp{
 
-    // c1 * a^k-1+p+...+ck * a^0+p mod x
-
-//    private int a;
-//    private int p;
-//
-//    public Rabin_Karp(int a, int p) {
-//        this.a = a;
-//        this.p = p;
-//    }
-
     public static long hash(String kmer, long modulo, int a, int p) {
         long hash = 0;
         int k = kmer.length()-1;
